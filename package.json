@@ -1,6 +1,6 @@
 {
   "name": "@skyux/select-field",
-  "version": "3.0.0-rc.0",
+  "version": "3.0.0-rc.1",
   "description": "SKY UX Select Field",
   "main": "bundles/bundle.umd.js",
   "module": "index.ts",
@@ -30,8 +30,8 @@
     "@skyux/core": "^3.1.0",
     "@skyux/i18n": "^3.3.0",
     "@skyux/indicators": "^3.0.0-rc.2",
-    "@skyux/list-builder": "^3.0.0-alpha.0",
-    "@skyux/list-builder-view-checklist": "^3.0.0-alpha.1",
+    "@skyux/list-builder": "^3.0.0-rc.0",
+    "@skyux/list-builder-view-checklist": "^3.0.0-rc.0",
     "@skyux/modals": "^3.0.0-rc.1"
   },
   "dependencies": {},
