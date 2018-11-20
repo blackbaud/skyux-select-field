@@ -21,6 +21,15 @@ describe('Select field', () => {
     expect('#screenshot-select-field-single-mode').toMatchBaselineScreenshot(done);
   });
 
+  it('should match previous single mode screenshot with validation', (done) => {
+    element(by.css('#screenshot-select-field-single-mode .sky-input-group.sky-btn')).click();
+    element(by.css('.sky-modal-btn-close')).click();
+    SkyHostBrowser.moveCursorOffScreen();
+    expect('#screenshot-select-field-single-mode-wrapper').toMatchBaselineScreenshot(done, {
+      screenshotName: 'select-field-single-mode-validation'
+    });
+  });
+
   it('should match previous multiple mode selected screenshot', (done) => {
     element(by.css('#select-field-populate-selected-btn')).click();
     expect('#screenshot-select-field-multiple-mode').toMatchBaselineScreenshot(done);
