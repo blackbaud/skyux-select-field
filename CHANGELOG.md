@@ -1,3 +1,7 @@
+# 3.0.0-rc.3 (2018-11-30)
+
+- Fixed select field components to use the appropriate CSS style when control value is invalid. [#3](https://github.com/blackbaud/skyux-select-field/pull/3)
+
 # 3.0.0-rc.2 (2018-11-20)
 
 - Added support for @skyux/list-builder-common@3.0.0-rc.1. [#4](https://github.com/blackbaud/skyux-select-field/pull/4)
