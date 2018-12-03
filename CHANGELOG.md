@@ -1,4 +1,4 @@
-# 3.0.0-rc.3 (2018-11-30)
+# 3.0.0-rc.3 (2018-12-03)
 
 - Fixed the select field component to use the appropriate CSS styles when the control value is invalid. [#3](https://github.com/blackbaud/skyux-select-field/pull/3)
 
