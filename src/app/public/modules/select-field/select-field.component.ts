@@ -3,7 +3,9 @@ import {
   ChangeDetectorRef,
   Component,
   forwardRef,
-  Input
+  Input,
+  EventEmitter,
+  Output
 } from '@angular/core';
 
 import {
@@ -99,6 +101,9 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
 
   @Input()
   public pickerHeading: string;
+
+  @Output()
+  public blur = new EventEmitter();
 
   public get value(): any {
     return this._value;
@@ -196,18 +201,21 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
     }
   }
 
+  public onTouched(): void {
+    this._onTouched();
+    this.blur.emit();
+  }
+
   // Angular automatically constructs these methods.
   /* istanbul ignore next */
   public onChange = (value: any) => { };
-  /* istanbul ignore next */
-  public onTouched = () => { };
 
   public registerOnChange(fn: (value: any) => void) {
     this.onChange = fn;
   }
 
   public registerOnTouched(fn: () => void) {
-    this.onTouched = fn;
+    this._onTouched = fn;
   }
 
   public setDisabledState(disabled: boolean) {
@@ -218,6 +226,9 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
   public clearSelection() {
     this.value = undefined;
   }
+
+  /* istanbul ignore next */
+  private _onTouched = () => { };
 
   private setTokensFromValue() {
     // Tokens only appear for multiple select mode.

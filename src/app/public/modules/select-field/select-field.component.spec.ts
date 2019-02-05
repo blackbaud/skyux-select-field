@@ -136,6 +136,16 @@ describe('Select field component', () => {
       expect(selectField.singleSelectPlaceholderText).toEqual('placeholder');
       expect(selectField.pickerHeading).toEqual('heading');
     });
+
+    it('should trigger blur event onTouch', fakeAsync(() => {
+      fixture.detectChanges();
+      setValue(undefined);
+      openPicker();
+      fixture.detectChanges();
+      closePicker();
+      fixture.detectChanges();
+      expect(component.touched).toBeTruthy();
+    }));
   });
 
   describe('multiple select', () => {
