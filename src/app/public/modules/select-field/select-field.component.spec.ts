@@ -137,7 +137,7 @@ describe('Select field component', () => {
       expect(selectField.pickerHeading).toEqual('heading');
     });
 
-    it('should trigger blur event onTouch', fakeAsync(() => {
+    it('should trigger touched event onTouch', fakeAsync(() => {
       fixture.detectChanges();
       setValue(undefined);
       openPicker();

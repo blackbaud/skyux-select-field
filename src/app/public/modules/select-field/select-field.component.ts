@@ -103,7 +103,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
   public pickerHeading: string;
 
   @Output()
-  public blur = new EventEmitter();
+  public touched = new EventEmitter();
 
   public get value(): any {
     return this._value;
@@ -203,7 +203,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
 
   public onTouched(): void {
     this._onTouched();
-    this.blur.emit();
+    this.touched.emit();
   }
 
   // Angular automatically constructs these methods.
