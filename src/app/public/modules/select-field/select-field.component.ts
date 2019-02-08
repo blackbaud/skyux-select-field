@@ -110,9 +110,11 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
   }
 
   public set value(value: any) {
-    this._value = value;
-    this.onChange(this.value);
-    this.onTouched();
+    if (value !== this._value) {
+      this._value = value;
+      this.onChange(this.value);
+      this.onTouched();
+    }
   }
 
   public get singleSelectModeValue(): string {
