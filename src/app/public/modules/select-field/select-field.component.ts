@@ -120,8 +120,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
     if (JSON.stringify(this._value) !== JSON.stringify(value)) {
       this._value = value;
       this.onChange(this.value);
-      this._onTouched();
-      this.blur.emit();
+      this.touch();
     }
   }
 
@@ -216,8 +215,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
 
   public onTouched(): void {
     if (!this.isModalOpen) {
-      this._onTouched();
-      this.blur.emit();
+      this.touch();
     }
   }
 
@@ -244,6 +242,11 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
 
   /* istanbul ignore next */
   private _onTouched = () => { };
+
+  private touch() {
+    this._onTouched();
+    this.blur.emit();
+  }
 
   private setTokensFromValue() {
     // Tokens only appear for multiple select mode.
