@@ -11,11 +11,21 @@ import {
   SkyAppTestUtility
 } from '@blackbaud/skyux-builder/runtime/testing/browser';
 
-import { SkyModalService } from '@skyux/modals';
+import {
+  SkyModalService
+} from '@skyux/modals';
 
-import { SkySelectFieldComponent } from './select-field.component';
-import { SkySelectFieldFixturesModule } from './fixtures/select-field-fixtures.module';
-import { SkySelectFieldTestComponent } from './fixtures/select-field.component.fixture';
+import {
+  SkySelectFieldComponent
+} from './select-field.component';
+
+import {
+  SkySelectFieldFixturesModule
+} from './fixtures/select-field-fixtures.module';
+
+import {
+  SkySelectFieldTestComponent
+} from './fixtures/select-field.component.fixture';
 
 describe('Select field component', () => {
   let fixture: ComponentFixture<SkySelectFieldTestComponent>;
@@ -137,14 +147,27 @@ describe('Select field component', () => {
       expect(selectField.pickerHeading).toEqual('heading');
     });
 
-    it('should trigger touched event onTouch', fakeAsync(() => {
+    it('should trigger blur event on touch', fakeAsync(() => {
       fixture.detectChanges();
+
       setValue(undefined);
       openPicker();
       fixture.detectChanges();
+
+      const selectFieldContainer: HTMLElement = fixture.nativeElement.querySelector('.sky-select-field');
+      SkyAppTestUtility.fireDomEvent(selectFieldContainer, 'focusout');
+      fixture.detectChanges();
+
       closePicker();
       fixture.detectChanges();
-      expect(component.touched).toBeTruthy();
+
+      SkyAppTestUtility.fireDomEvent(selectFieldContainer, 'focusout');
+      fixture.detectChanges();
+
+      expect(component.touched).toBe(1);
+
+      SkyAppTestUtility.fireDomEvent(selectFieldContainer, 'focusout');
+      expect(component.touched).toBe(2);
     }));
   });
 

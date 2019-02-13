@@ -13,7 +13,9 @@ import {
   NG_VALUE_ACCESSOR
 } from '@angular/forms';
 
-import { Observable } from 'rxjs/Observable';
+import {
+  Observable
+} from 'rxjs/Observable';
 
 import {
   SkyModalService,
@@ -33,8 +35,13 @@ import {
   SkySelectFieldSelectMode
 } from './types';
 
-import { SkySelectFieldPickerContext } from './select-field-picker-context';
-import { SkySelectFieldPickerComponent } from './select-field-picker.component';
+import {
+  SkySelectFieldPickerContext
+} from './select-field-picker-context';
+
+import {
+  SkySelectFieldPickerComponent
+} from './select-field-picker.component';
 
 @Component({
   selector: 'sky-select-field',
@@ -103,17 +110,18 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
   public pickerHeading: string;
 
   @Output()
-  public touched = new EventEmitter();
+  public blur = new EventEmitter();
 
   public get value(): any {
     return this._value;
   }
 
   public set value(value: any) {
-    if (value !== this._value) {
+    if (JSON.stringify(this._value) !== JSON.stringify(value)) {
       this._value = value;
       this.onChange(this.value);
-      this.onTouched();
+      this._onTouched();
+      this.blur.emit();
     }
   }
 
@@ -133,6 +141,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
   private _disabled: boolean;
   private _selectMode: SkySelectFieldSelectMode;
   private _value: any;
+  private isModalOpen = false;
 
   constructor(
     private changeDetector: ChangeDetectorRef,
@@ -156,6 +165,8 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
   }
 
   public openPicker() {
+    this.isModalOpen = true;
+
     (
       this.pickerHeading ?
         Observable.of(this.pickerHeading) :
@@ -186,7 +197,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
               this.writeValue(result.data);
             }
           }
-          this.onTouched();
+          this.isModalOpen = false;
         });
       });
   }
@@ -204,8 +215,10 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
   }
 
   public onTouched(): void {
-    this._onTouched();
-    this.touched.emit();
+    if (!this.isModalOpen) {
+      this._onTouched();
+      this.blur.emit();
+    }
   }
 
   // Angular automatically constructs these methods.

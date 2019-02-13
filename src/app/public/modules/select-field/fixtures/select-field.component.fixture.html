@@ -12,7 +12,7 @@
     [singleSelectPlaceholderText]="singleSelectPlaceholderText"
     [pickerHeading]="pickerHeading"
     [ngModel]="formData.modelValue"
-    (touched)="onTouch()"
+    (blur)="onTouch()"
     (ngModelChange)="onModelChange($event)"
   >
   </sky-select-field>

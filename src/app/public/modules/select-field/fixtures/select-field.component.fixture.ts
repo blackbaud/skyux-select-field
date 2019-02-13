@@ -25,7 +25,7 @@ export class SkySelectFieldTestComponent implements OnInit, OnDestroy {
   public singleSelectOpenButtonTitle: string;
   public singleSelectPlaceholderText: string;
   public pickerHeading: string;
-  public touched = false;
+  public touched = 0;
 
   public data = new BehaviorSubject<any[]>([]);
 
@@ -61,6 +61,6 @@ export class SkySelectFieldTestComponent implements OnInit, OnDestroy {
   }
 
   public onTouch() {
-    this.touched = true;
+    this.touched += 1;
   }
 }
