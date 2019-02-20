@@ -24,6 +24,7 @@ describe('Select field', () => {
   it('should match previous single mode screenshot with validation', (done) => {
     element(by.css('#screenshot-select-field-single-mode .sky-input-group.sky-btn')).click();
     element(by.css('.sky-modal-btn-close')).click();
+    element(by.css('body')).click();
     SkyHostBrowser.moveCursorOffScreen();
     expect('#screenshot-select-field-single-mode-wrapper').toMatchBaselineScreenshot(done, {
       screenshotName: 'select-field-single-mode-validation'
