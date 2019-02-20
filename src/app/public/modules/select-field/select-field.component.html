@@ -1,6 +1,6 @@
 <div
   class="sky-select-field"
-  (focusout)="onTouched()"
+  (focusout)="onHostFocusOut()"
 >
   <ng-container
     *ngTemplateOutlet="(selectMode === 'multiple') ? multipleSelectMode : singleSelectMode ">

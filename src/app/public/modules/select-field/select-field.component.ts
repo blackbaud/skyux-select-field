@@ -5,7 +5,8 @@ import {
   forwardRef,
   Input,
   EventEmitter,
-  Output
+  Output,
+  OnDestroy
 } from '@angular/core';
 
 import {
@@ -57,7 +58,7 @@ import {
     }
   ]
 })
-export class SkySelectFieldComponent implements ControlValueAccessor {
+export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy {
   @Input()
   public ariaLabel: string;
 
@@ -120,7 +121,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
     if (JSON.stringify(this._value) !== JSON.stringify(value)) {
       this._value = value;
       this.onChange(this.value);
-      this.touch();
+      this.onTouched();
     }
   }
 
@@ -148,6 +149,10 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
     private resourcesService: SkyLibResourcesService
   ) { }
 
+  public ngOnDestroy() {
+    this.blur.complete();
+  }
+
   public onTokensChange(change: SkyToken[]) {
     if (!change || change === this.tokens) {
       return;
@@ -164,8 +169,6 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
   }
 
   public openPicker() {
-    this.isModalOpen = true;
-
     (
       this.pickerHeading ?
         Observable.of(this.pickerHeading) :
@@ -187,6 +190,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
             useValue: pickerContext
           }]
         });
+        this.isModalOpen = true;
 
         modalInstance.closed.subscribe((result: SkyModalCloseArgs) => {
           if (result.reason === 'save') {
@@ -213,10 +217,15 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
     }
   }
 
-  public onTouched(): void {
+  public onHostFocusOut(): void {
     if (!this.isModalOpen) {
-      this.touch();
+      this.onTouched();
     }
+  }
+
+  public onTouched(): void {
+    this._registeredTouchCallback();
+    this.blur.emit();
   }
 
   // Angular automatically constructs these methods.
@@ -228,7 +237,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
   }
 
   public registerOnTouched(fn: () => void) {
-    this._onTouched = fn;
+    this._registeredTouchCallback = fn;
   }
 
   public setDisabledState(disabled: boolean) {
@@ -241,12 +250,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor {
   }
 
   /* istanbul ignore next */
-  private _onTouched = () => { };
-
-  private touch() {
-    this._onTouched();
-    this.blur.emit();
-  }
+  private _registeredTouchCallback = () => { };
 
   private setTokensFromValue() {
     // Tokens only appear for multiple select mode.
