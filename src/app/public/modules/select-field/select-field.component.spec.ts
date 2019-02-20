@@ -178,6 +178,18 @@ describe('Select field component', () => {
       expect(selectField.value[0].id).toEqual(component.staticData[0].id);
     }));
 
+    it('should ignore redundant value updates from ngModel', fakeAsync(() => {
+      fixture.detectChanges();
+
+      setValue([component.staticData[0]]);
+      fixture.detectChanges();
+      expect(component.touched).toBe(1);
+
+      setValue([component.staticData[0]]);
+      fixture.detectChanges();
+      expect(component.touched).toBe(1);
+    }));
+
     it('should collapse all tokens into one if many options are chosen', fakeAsync(() => {
       fixture.detectChanges();
       setValue([]);
@@ -212,6 +224,19 @@ describe('Select field component', () => {
       fixture.detectChanges();
       setValue(component.staticData[0]);
       expect(selectField.value.id).toEqual(component.staticData[0].id);
+    }));
+
+    it('should ignore redundant value updates from ngModel', fakeAsync(() => {
+      component.selectMode = 'single';
+      fixture.detectChanges();
+
+      setValue(component.staticData[0]);
+      fixture.detectChanges();
+      expect(component.touched).toBe(1);
+
+      setValue(component.staticData[0]);
+      fixture.detectChanges();
+      expect(component.touched).toBe(1);
     }));
 
     it('should select a value from the picker', fakeAsync(() => {
