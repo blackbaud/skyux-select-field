@@ -60,7 +60,7 @@ export class SkySelectFieldTestComponent implements OnInit, OnDestroy {
     this.formData.modelValue = value;
   }
 
-  public onTouch() {
+  public onBlur() {
     this.touched += 1;
   }
 }
