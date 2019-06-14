@@ -1,3 +1,7 @@
+# 3.1.1 (2019-02-19)
+
+- Fixed select field component to no longer lose focus after clearing selection. [#26](https://github.com/blackbaud/skyux-select-field/pull/26) (Thanks @blackbaud-conorwright)
+
 # 3.1.0 (2019-02-19)
 
 - Added `blur` event to select field component. [#11](https://github.com/blackbaud/skyux-select-field/pull/11)
