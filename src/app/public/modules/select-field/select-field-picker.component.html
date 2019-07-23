@@ -10,6 +10,11 @@
           [selectedIds]="selectedIds"
           (selectedIdsChange)="onSelectedIdsChange($event)">
           <sky-list-toolbar>
+              <sky-list-toolbar-search-actions *ngIf="showNewButton" >
+                  <button class="sky-btn sky-btn-default" (click)="emitAddNewRecord()" >
+                      <i class="fa fa-plus-circle"></i>
+                      <span>{{ 'skyux_select_field_add_new_record_trigger_button' | skyLibResources }}</span></button>
+                    </sky-list-toolbar-search-actions>
             <sky-list-filter-inline
               *ngIf="categories && categories.length">
               <sky-list-filter-inline-item

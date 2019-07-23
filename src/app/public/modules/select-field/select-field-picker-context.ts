@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs/Observable';
+import { EventEmitter } from '@angular/core';
 
 import {
   SkySelectField,
@@ -7,7 +8,9 @@ import {
 
 export class SkySelectFieldPickerContext {
   public data: Observable<SkySelectField[]>;
+  public newButtonEvent: EventEmitter<unknown>;
   public headingText?: string;
   public selectedValue?: any;
   public selectMode?: SkySelectFieldSelectMode;
+  public showNewButton?: boolean;
 }

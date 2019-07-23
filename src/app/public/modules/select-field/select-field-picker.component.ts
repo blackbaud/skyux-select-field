@@ -4,7 +4,8 @@ import {
   Component,
   ElementRef,
   OnInit,
-  ViewChild
+  ViewChild,
+  EventEmitter
 } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
@@ -52,6 +53,9 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit {
   public selectedCategory = this.defaultCategory;
   public selectedIds: any[] = [];
 
+  public newButtonEvent: EventEmitter<unknown>;
+  public showNewButton?: boolean;
+
   @ViewChild(SkyListViewChecklistComponent)
   private listViewChecklist: SkyListViewChecklistComponent;
 
@@ -66,6 +70,9 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit {
     this.data = this.context.data;
     this.headingText = this.context.headingText;
     this.selectMode = this.context.selectMode;
+    this.newButtonEvent = this.context.newButtonEvent;
+    this.showNewButton = this.context.showNewButton;
+
     this.selectedIds = this.getSelectedIds();
     this.assignCategories();
   }
@@ -74,6 +81,10 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit {
     this.windowRef.getWindow().setTimeout(() => {
       this.elementRef.nativeElement.querySelector('.sky-search-input').focus();
     });
+  }
+
+  public emitAddNewRecord(): void {
+    this.newButtonEvent.emit();
   }
 
   public save() {

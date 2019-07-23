@@ -111,8 +111,14 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
   @Input()
   public pickerHeading: string;
 
+  @Input()
+  public showNewButton: boolean;
+
   @Output()
   public blur = new EventEmitter();
+
+  @Output()
+  public newButtonEvent = new EventEmitter();
 
   public get value(): any {
     return this._value;
@@ -153,6 +159,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
 
   public ngOnDestroy() {
     this.blur.complete();
+    this.newButtonEvent.complete();
   }
 
   public onTokensChange(change: SkyToken[]) {
@@ -185,6 +192,8 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
         pickerContext.data = this.data;
         pickerContext.selectedValue = this.value;
         pickerContext.selectMode = this.selectMode;
+        pickerContext.showNewButton = this.showNewButton;
+        pickerContext.newButtonEvent = this.newButtonEvent;
 
         const modalInstance = this.modalService.open(SkySelectFieldPickerComponent, {
           providers: [{
