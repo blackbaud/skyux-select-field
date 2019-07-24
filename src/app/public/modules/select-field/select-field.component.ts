@@ -159,7 +159,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
 
   public ngOnDestroy() {
     this.blur.complete();
-    this.newButtonEvent.complete();
+    this.newButtonEvent.unsubscribe();
   }
 
   public onTokensChange(change: SkyToken[]) {

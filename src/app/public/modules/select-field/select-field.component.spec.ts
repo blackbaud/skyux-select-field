@@ -63,6 +63,13 @@ describe('Select field component', () => {
     fixture.detectChanges();
   }
 
+  function clickNewButton() {
+    const modalCloseButton = document.querySelector('.sky-select-field-picker-btn-new');
+    (modalCloseButton as HTMLElement).click();
+    tick();
+    fixture.detectChanges();
+  }
+
   function getTokens(): NodeListOf<any> {
     return document.querySelectorAll('.sky-token');
   }
@@ -313,6 +320,18 @@ describe('Select field component', () => {
       values = document.querySelectorAll('.sky-list-view-checklist sky-checkbox input');
       expect(select.options.length).toEqual(5);
       expect(values.length).toEqual(2);
+    }));
+  });
+
+  describe('new button', () => {
+    it('should emit the new button when it is clicked', fakeAsync(() => {
+      selectField.showNewButton = true;
+      let spy = spyOn(selectField.newButtonEvent, 'emit');
+      fixture.detectChanges();
+      setValue(undefined);
+      openPicker();
+      clickNewButton();
+      expect(spy).toHaveBeenCalled();
     }));
   });
 });
