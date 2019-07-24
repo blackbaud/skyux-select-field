@@ -84,9 +84,5 @@
     "tslint": "5.18.0",
     "typescript": "3.2.4",
     "zone.js": "0.8.29"
-  },
-  "dependencies": {
-    "@skyux/layout": "^3.2.2",
-    "@skyux/list-builder": "^3.5.0"
   }
 }
