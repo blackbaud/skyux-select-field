@@ -112,13 +112,13 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
   public pickerHeading: string;
 
   @Input()
-  public showNewButton: boolean;
+  public showAddNewRecordButton: boolean;
 
   @Output()
   public blur = new EventEmitter();
 
   @Output()
-  public newButtonEvent = new EventEmitter();
+  public addNewRecordButtonClick = new EventEmitter();
 
   public get value(): any {
     return this._value;
@@ -159,7 +159,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
 
   public ngOnDestroy() {
     this.blur.complete();
-    this.newButtonEvent.unsubscribe();
+    this.addNewRecordButtonClick.unsubscribe();
   }
 
   public onTokensChange(change: SkyToken[]) {
@@ -192,8 +192,8 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
         pickerContext.data = this.data;
         pickerContext.selectedValue = this.value;
         pickerContext.selectMode = this.selectMode;
-        pickerContext.showNewButton = this.showNewButton;
-        pickerContext.newButtonEvent = this.newButtonEvent;
+        pickerContext.showAddNewRecordButton = this.showAddNewRecordButton;
+        pickerContext.addNewRecordButtonClick = this.addNewRecordButtonClick;
 
         const modalInstance = this.modalService.open(SkySelectFieldPickerComponent, {
           providers: [{

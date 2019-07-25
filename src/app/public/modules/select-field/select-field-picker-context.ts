@@ -7,10 +7,11 @@ import {
 } from './types';
 
 export class SkySelectFieldPickerContext {
+
   public data: Observable<SkySelectField[]>;
-  public newButtonEvent: EventEmitter<unknown>;
+  public addNewRecordButtonClick: EventEmitter<unknown>;
   public headingText?: string;
   public selectedValue?: any;
   public selectMode?: SkySelectFieldSelectMode;
-  public showNewButton?: boolean;
+  public showAddNewRecordButton?: boolean;
 }

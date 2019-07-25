@@ -322,8 +322,8 @@ describe('Select field component', () => {
 
   describe('new button', () => {
     it('should emit the new button when it is clicked', fakeAsync(() => {
-      selectField.showNewButton = true;
-      let spy = spyOn(selectField.newButtonEvent, 'emit');
+      selectField.showAddNewRecordButton = true;
+      let spy = spyOn(selectField.addNewRecordButtonClick, 'emit');
       fixture.detectChanges();
       setValue(undefined);
       openPicker();

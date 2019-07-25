@@ -53,8 +53,8 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit {
   public selectedCategory = this.defaultCategory;
   public selectedIds: any[] = [];
 
-  public newButtonEvent: EventEmitter<unknown>;
-  public showNewButton?: boolean;
+  public addNewRecordButtonClick: EventEmitter<unknown>;
+  public showAddNewRecordButton?: boolean;
 
   @ViewChild(SkyListViewChecklistComponent)
   private listViewChecklist: SkyListViewChecklistComponent;
@@ -70,8 +70,8 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit {
     this.data = this.context.data;
     this.headingText = this.context.headingText;
     this.selectMode = this.context.selectMode;
-    this.newButtonEvent = this.context.newButtonEvent;
-    this.showNewButton = this.context.showNewButton;
+    this.addNewRecordButtonClick = this.context.addNewRecordButtonClick;
+    this.showAddNewRecordButton = this.context.showAddNewRecordButton;
 
     this.selectedIds = this.getSelectedIds();
     this.assignCategories();
@@ -83,8 +83,8 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit {
     });
   }
 
-  public emitAddNewRecord(): void {
-    this.newButtonEvent.emit();
+  public onAddNewRecordButtonClick(): void {
+    this.addNewRecordButtonClick.emit();
   }
 
   public save() {
