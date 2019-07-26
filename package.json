@@ -29,7 +29,7 @@
     "@skyux/core": "^3.5.1",
     "@skyux/i18n": "^3.5.0",
     "@skyux/indicators": "^3.0.0",
-    "@skyux/list-builder": "^3.0.0",
+    "@skyux/list-builder": "^3.4.0",
     "@skyux/list-builder-common": "^3.0.0",
     "@skyux/list-builder-view-checklist": "^3.0.0",
     "@skyux/modals": "^3.0.0"
@@ -49,7 +49,7 @@
     "@blackbaud/auth-client": "2.17.1",
     "@pact-foundation/pact": "9.0.1",
     "@pact-foundation/pact-web": "7.4.0",
-    "@skyux-sdk/builder": "3.8.0",
+    "@skyux-sdk/builder": "3.8.1",
     "@skyux-sdk/builder-plugin-skyux": "1.0.0",
     "@skyux-sdk/e2e": "3.1.2",
     "@skyux-sdk/pact": "3.3.0",

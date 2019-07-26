@@ -38,6 +38,7 @@ describe('Select field', () => {
 
   it('should match previous multiple mode selected screenshot', (done) => {
     element(by.css('#select-field-populate-selected-btn')).click();
+    SkyHostBrowser.moveCursorOffScreen();
     expect('#screenshot-select-field-multiple-mode').toMatchBaselineScreenshot(done, {
       screenshotName: 'select-field-multiple-mode-selected'
     });
@@ -45,6 +46,7 @@ describe('Select field', () => {
 
   it('should match previous single mode selected screenshot', (done) => {
     element(by.css('#select-field-populate-selected-btn')).click();
+    SkyHostBrowser.moveCursorOffScreen();
     expect('#screenshot-select-field-single-mode').toMatchBaselineScreenshot(done, {
       screenshotName: 'select-field-single-mode-selected'
     });
@@ -53,6 +55,7 @@ describe('Select field', () => {
   it('should match previous multiple mode selected screenshot with a long label', (done) => {
     SkyHostBrowser.setWindowBreakpoint('md');
     element(by.css('#select-field-populate-selected-long-btn')).click();
+    SkyHostBrowser.moveCursorOffScreen();
     expect('#screenshot-select-field-multiple-mode').toMatchBaselineScreenshot(done, {
       screenshotName: 'select-field-multiple-mode-long-label'
     });
@@ -61,6 +64,7 @@ describe('Select field', () => {
   it('should match previous single mode selected screenshot with a long label', (done) => {
     SkyHostBrowser.setWindowBreakpoint('md');
     element(by.css('#select-field-populate-selected-long-btn')).click();
+    SkyHostBrowser.moveCursorOffScreen();
     expect('#screenshot-select-field-single-mode').toMatchBaselineScreenshot(done, {
       screenshotName: 'select-field-single-mode-long-label'
     });
@@ -89,6 +93,19 @@ describe('Select field', () => {
       done();
     }, {
       screenshotName: 'select-field-multiple-mode-btn'
+    });
+  });
+
+  it('should match previous picker add new record button screenshot', (done) => {
+    element(by.css('#screenshot-select-field-add-new-record-button .sky-input-group.sky-btn')).click();
+
+    SkyHostBrowser.moveCursorOffScreen();
+
+    expect('.sky-modal .sky-list-toolbar-search').toMatchBaselineScreenshot(() => {
+      element(by.css('.sky-modal-btn-close')).click();
+      done();
+    }, {
+      screenshotName: 'select-field-add-new-record-btn'
     });
   });
 });
