@@ -63,9 +63,10 @@ describe('Select field component', () => {
     fixture.detectChanges();
   }
 
-  function clickNewButton() {
+  function clickNewButton(): void {
     const modalCloseButton = document.querySelector('.sky-select-field-picker-btn-new');
     (modalCloseButton as HTMLElement).click();
+
     tick();
     fixture.detectChanges();
   }
@@ -320,14 +321,18 @@ describe('Select field component', () => {
     }));
   });
 
-  describe('new button', () => {
+  describe('Add new record button', () => {
     it('should emit the new button when it is clicked', fakeAsync(() => {
       selectField.showAddNewRecordButton = true;
-      let spy = spyOn(selectField.addNewRecordButtonClick, 'emit');
+
+      const spy = spyOn(selectField.addNewRecordButtonClick, 'emit');
+
       fixture.detectChanges();
+
       setValue(undefined);
       openPicker();
       clickNewButton();
+
       expect(spy).toHaveBeenCalled();
     }));
   });

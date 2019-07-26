@@ -3,12 +3,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  OnDestroy,
   OnInit,
-  ViewChild,
-  EventEmitter
+  ViewChild
 } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/take';
 
 import {
@@ -43,7 +44,7 @@ import { SkySelectFieldPickerContext } from './select-field-picker-context';
   templateUrl: './select-field-picker.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit {
+export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, OnDestroy {
   public categories: string[];
   public data: Observable<any>;
   public selectMode: SkySelectFieldSelectMode;
@@ -53,8 +54,8 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit {
   public selectedCategory = this.defaultCategory;
   public selectedIds: any[] = [];
 
-  public addNewRecordButtonClick: EventEmitter<unknown>;
-  public showAddNewRecordButton?: boolean;
+  public addNewRecordButtonClick = new Subject<void>();
+  public showAddNewRecordButton: boolean = false;
 
   @ViewChild(SkyListViewChecklistComponent)
   private listViewChecklist: SkyListViewChecklistComponent;
@@ -70,7 +71,6 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit {
     this.data = this.context.data;
     this.headingText = this.context.headingText;
     this.selectMode = this.context.selectMode;
-    this.addNewRecordButtonClick = this.context.addNewRecordButtonClick;
     this.showAddNewRecordButton = this.context.showAddNewRecordButton;
 
     this.selectedIds = this.getSelectedIds();
@@ -83,8 +83,12 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit {
     });
   }
 
+  public ngOnDestroy(): void {
+    this.addNewRecordButtonClick.complete();
+  }
+
   public onAddNewRecordButtonClick(): void {
-    this.addNewRecordButtonClick.emit();
+    this.addNewRecordButtonClick.next();
   }
 
   public save() {
