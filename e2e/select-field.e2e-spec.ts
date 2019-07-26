@@ -91,4 +91,17 @@ describe('Select field', () => {
       screenshotName: 'select-field-multiple-mode-btn'
     });
   });
+
+  it('should match previous picker add new record button screenshot', (done) => {
+    element(by.css('#screenshot-select-field-add-new-record-button .sky-input-group.sky-btn')).click();
+
+    SkyHostBrowser.moveCursorOffScreen();
+
+    expect('.sky-modal .sky-list-toolbar-search').toMatchBaselineScreenshot(() => {
+      element(by.css('.sky-modal-btn-close')).click();
+      done();
+    }, {
+      screenshotName: 'select-field-add-new-record-btn'
+    });
+  });
 });
