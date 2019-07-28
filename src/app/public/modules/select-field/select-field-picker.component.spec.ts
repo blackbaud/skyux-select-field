@@ -1,4 +1,4 @@
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { TestBed, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
 import { SkySelectFieldFixturesModule } from './fixtures/select-field-fixtures.module';
 import { SkySelectFieldPickerComponent } from './select-field-picker.component';
 import { SkyMediaBreakpoints, SkyMediaQueryService, SkyWindowRefService } from '@skyux/core';
@@ -44,19 +44,21 @@ describe('sky select field picker component', () => {
 
   describe('hideNewButtonText', () => {
 
-    it('should hide the text of new button when mediaQueries is triggered from small screen ', () => {
+    it('should hide the text of new button when mediaQueries is triggered from small screen ', fakeAsync(() => {
       component.showNewButtonText = true;
+      fixture.detectChanges();
+      tick();
       resolutionSubject.next(SkyMediaBreakpoints.xs);
-      fixture.detectChanges();
       expect(component.showNewButtonText).toBeFalsy();
-    });
+    }));
 
-    it('should show the text of new button when mediaQueries is triggered from small screen ', () => {
-      component.showNewButtonText = true;
-      resolutionSubject.next(SkyMediaBreakpoints.sm);
+    it('should show the text of new button when mediaQueries is triggered from small screen ', fakeAsync(() => {
+      component.showNewButtonText = false;
       fixture.detectChanges();
+      tick();
+      resolutionSubject.next(SkyMediaBreakpoints.sm);
       expect(component.showNewButtonText).toBeTruthy();
-    });
+    }));
   });
 
 });

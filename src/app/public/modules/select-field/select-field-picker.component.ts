@@ -59,7 +59,7 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
   public showAddNewRecordButton: boolean = false;
 
   private querySubscription: Subscription;
-  public showNewButtonText: boolean;
+  public showNewButtonText: boolean = true;
 
   @ViewChild(SkyListViewChecklistComponent)
   private listViewChecklist: SkyListViewChecklistComponent;
@@ -70,7 +70,7 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
     private elementRef: ElementRef,
     private windowRef: SkyWindowRefService,
     private mediaQueries: SkyMediaQueryService
-  ) { }
+    ) { }
 
   public ngOnInit() {
     this.hideNewButtonText();
