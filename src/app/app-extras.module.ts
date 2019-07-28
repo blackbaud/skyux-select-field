@@ -10,10 +10,15 @@ import {
   SkySelectFieldModule
 } from './public';
 
+import {
+  SkyMediaQueryModule
+} from '@skyux/core';
+
 @NgModule({
   exports: [
     SkyAppLinkModule,
-    SkySelectFieldModule
+    SkySelectFieldModule,
+    SkyMediaQueryModule
   ]
 })
 export class AppExtrasModule { }

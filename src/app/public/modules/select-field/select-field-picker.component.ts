@@ -11,6 +11,7 @@ import {
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/take';
+import { Subscription } from 'rxjs';
 
 import {
   ListItemModel
@@ -29,7 +30,7 @@ import {
 } from '@skyux/modals';
 
 import {
-  SkyWindowRefService
+  SkyWindowRefService, SkyMediaBreakpoints, SkyMediaQueryService
 } from '@skyux/core';
 
 import {
@@ -57,6 +58,9 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
   public addNewRecordButtonClick = new Subject<void>();
   public showAddNewRecordButton: boolean = false;
 
+  private querySubscription: Subscription;
+  public showNewButtonText: boolean;
+
   @ViewChild(SkyListViewChecklistComponent)
   private listViewChecklist: SkyListViewChecklistComponent;
 
@@ -64,10 +68,12 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
     private context: SkySelectFieldPickerContext,
     private instance: SkyModalInstance,
     private elementRef: ElementRef,
-    private windowRef: SkyWindowRefService
+    private windowRef: SkyWindowRefService,
+    private mediaQueries: SkyMediaQueryService
   ) { }
 
   public ngOnInit() {
+    this.hideNewButtonText();
     this.data = this.context.data;
     this.headingText = this.context.headingText;
     this.selectMode = this.context.selectMode;
@@ -84,6 +90,7 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
   }
 
   public ngOnDestroy(): void {
+    this.querySubscription.unsubscribe();
     this.addNewRecordButtonClick.complete();
   }
 
@@ -148,5 +155,17 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
     }
 
     return [];
+  }
+
+  private hideNewButtonText(): void {
+    this.querySubscription = this.mediaQueries.subscribe((newBreakpoint: SkyMediaBreakpoints) => {
+      switch (newBreakpoint) {
+        case SkyMediaBreakpoints.xs:
+          this.showNewButtonText = false;
+          break;
+        default:
+          this.showNewButtonText = true;
+      }
+    });
   }
 }

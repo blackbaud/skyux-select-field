@@ -20,7 +20,7 @@
                   class="fa-fw"
                   icon="plus-circle"
                 ></sky-icon>
-                {{ 'skyux_select_field_add_new_record_button' | skyLibResources }}
+                <span *ngIf="showNewButtonText">{{ 'skyux_select_field_add_new_record_button' | skyLibResources }}</span>
               </button>
             </sky-list-toolbar-search-actions>
             <sky-list-filter-inline
