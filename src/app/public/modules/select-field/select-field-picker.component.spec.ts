@@ -44,7 +44,7 @@ describe('sky select field picker component', () => {
 
   describe('hideNewButtonText', () => {
 
-    it('should hide the text of new button when mediaQueries is triggered from small screen ', fakeAsync(() => {
+    it('should hide the text of new button when mediaQueries is triggered from small screen', fakeAsync(() => {
       component.showNewButtonText = true;
       fixture.detectChanges();
       tick();
@@ -52,7 +52,7 @@ describe('sky select field picker component', () => {
       expect(component.showNewButtonText).toBeFalsy();
     }));
 
-    it('should show the text of new button when mediaQueries is triggered from small screen ', fakeAsync(() => {
+    it('should show the text of new button when mediaQueries is triggered from bigger screen size', fakeAsync(() => {
       component.showNewButtonText = false;
       fixture.detectChanges();
       tick();
