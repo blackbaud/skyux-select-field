@@ -57,7 +57,7 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
   public addNewRecordButtonClick = new Subject<void>();
   public showAddNewRecordButton: boolean = false;
 
-  public get defaultCategory() {
+  public get defaultCategory(): string {
     return 'any';
   }
 
