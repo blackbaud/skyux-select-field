@@ -174,6 +174,20 @@ describe('Select field component', () => {
       SkyAppTestUtility.fireDomEvent(selectFieldContainer, 'focusout');
       expect(component.touched).toBe(2);
     }));
+
+    it('should not be touched when value is set programmatically', fakeAsync(() => {
+      fixture.detectChanges();
+
+      setValue([component.staticData[0]]);
+      fixture.detectChanges();
+
+      expect(component.touched).toBe(0);
+
+      setValue([component.staticData[1]]);
+      fixture.detectChanges();
+
+      expect(component.touched).toBe(0);
+    }));
   });
 
   describe('multiple select', () => {
@@ -188,11 +202,11 @@ describe('Select field component', () => {
 
       setValue([component.staticData[0]]);
       fixture.detectChanges();
-      expect(component.touched).toBe(1);
+      expect(component.touched).toBe(0);
 
       setValue([component.staticData[0]]);
       fixture.detectChanges();
-      expect(component.touched).toBe(1);
+      expect(component.touched).toBe(0);
     }));
 
     it('should collapse all tokens into one if many options are chosen', fakeAsync(() => {
@@ -237,11 +251,11 @@ describe('Select field component', () => {
 
       setValue(component.staticData[0]);
       fixture.detectChanges();
-      expect(component.touched).toBe(1);
+      expect(component.touched).toBe(0);
 
       setValue(component.staticData[0]);
       fixture.detectChanges();
-      expect(component.touched).toBe(1);
+      expect(component.touched).toBe(0);
     }));
 
     it('should select a value from the picker', fakeAsync(() => {
