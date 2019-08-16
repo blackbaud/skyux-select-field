@@ -235,6 +235,23 @@ describe('Select field component', () => {
       expect(selectField.value.length).toEqual(0);
       expect(tokens.length).toEqual(0);
     }));
+
+    it('should handle closing a subsection of all the tokens', fakeAsync(() => {
+      fixture.detectChanges();
+      setValue([component.staticData[0], component.staticData[3], component.staticData[5]]);
+      openPicker();
+      selectOptions(2); // Click the selected option to unselect it!
+      savePicker();
+      expect(selectField.value.length).toEqual(3);
+
+      let tokens = getTokens();
+      expect(tokens.length).toEqual(3);
+
+      closeToken(0);
+      tokens = getTokens();
+      expect(selectField.value.length).toEqual(2);
+      expect(tokens.length).toEqual(2);
+    }));
   });
 
   describe('single select', () => {
