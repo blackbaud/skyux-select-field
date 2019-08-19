@@ -152,6 +152,20 @@ describe('Select field component', () => {
       expect(selectField.pickerHeading).toEqual('heading');
     });
 
+    it('should set custom picker heading', fakeAsync(() => {
+      component.pickerHeading = 'FOOBAR';
+      fixture.detectChanges();
+      openPicker();
+      fixture.detectChanges();
+
+      const selectFieldHeading: HTMLElement = document.querySelector('.sky-modal-header-content');
+
+      expect(selectFieldHeading.innerText).toEqual('FOOBAR');
+
+      closePicker();
+      fixture.detectChanges();
+    }));
+
     it('should trigger blur event when focus is lost', fakeAsync(() => {
       fixture.detectChanges();
 
