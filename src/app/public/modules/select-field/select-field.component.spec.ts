@@ -160,7 +160,7 @@ describe('Select field component', () => {
 
       const selectFieldHeading: HTMLElement = document.querySelector('.sky-modal-header-content');
 
-      expect(selectFieldHeading.innerText).toEqual('FOOBAR');
+      expect(selectFieldHeading.innerText.trim()).toEqual('FOOBAR');
 
       closePicker();
       fixture.detectChanges();
