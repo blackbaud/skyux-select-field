@@ -1,6 +1,6 @@
 # 3.3.2 (2019-08-19)
 
-- Fixed the select field picker component to not fire a touched event when the value is updated programmatically. [#39](https://github.com/blackbaud/skyux-select-field/pull/39)
+- Fixed the select field picker component to no longer mark the form control as `touched` when the value is updated programmatically. [#39](https://github.com/blackbaud/skyux-select-field/pull/39)
 
 # 3.3.1 (2019-08-05)
 
