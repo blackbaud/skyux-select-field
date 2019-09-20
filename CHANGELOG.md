@@ -1,6 +1,6 @@
 # 3.4.0 (2019-09-20)
 
-- Added `customPicker` option to the select field component. [#47](https://github.com/blackbaud/skyux-select-field/pull/47)
+- Added the `customPicker` option to the select field component. [#47](https://github.com/blackbaud/skyux-select-field/pull/47)
 
 # 3.3.2 (2019-08-19)
 
