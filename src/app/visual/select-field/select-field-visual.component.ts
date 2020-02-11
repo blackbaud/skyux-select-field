@@ -45,8 +45,6 @@ export class SelectFieldVisualComponent implements OnInit {
 
   public reactiveForm: FormGroup;
 
-  public foobar = this.staticData[0];
-
   constructor(
     private formBuilder: FormBuilder
   ) { }
