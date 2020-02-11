@@ -45,6 +45,8 @@ export class SelectFieldVisualComponent implements OnInit {
 
   public reactiveForm: FormGroup;
 
+  public foobar = this.staticData[0];
+
   constructor(
     private formBuilder: FormBuilder
   ) { }
@@ -79,5 +81,9 @@ export class SelectFieldVisualComponent implements OnInit {
 
   public populateFormControl() {
     this.reactiveForm.controls['fruits'].setValue(this.staticData[0]);
+  }
+
+  public getJsonValue(value: any): string {
+    return JSON.stringify(value);
   }
 }

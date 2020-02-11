@@ -15,9 +15,9 @@
         name="single"
         selectMode="single"
         [data]="data"
-        [ngModel]="model.single"
+        [(ngModel)]="model.single"
         required
-        #fruit="ngModel"
+        #singleSelectModel="ngModel"
       >
       </sky-select-field>
     </div>
@@ -25,22 +25,34 @@
     <h3>
       Form control statuses
     </h3>
-
-    <table>
-      <tr>
-        <th>Touched</th>
-        <td>{{ fruit.touched }}</td>
-      </tr>
-      <tr>
-        <th>Pristine</th>
-        <td>{{ fruit.pristine }}</td>
-      </tr>
-      <tr>
-        <th>Valid</th>
-        <td>{{ fruit.valid }}</td>
-      </tr>
-    </table>
   </div>
+
+  <table>
+    <tr>
+      <th>Touched</th>
+      <td>{{ singleSelectModel.touched }}</td>
+    </tr>
+    <tr>
+      <th>Pristine</th>
+      <td>{{ singleSelectModel.pristine }}</td>
+    </tr>
+    <tr>
+      <th>Valid</th>
+      <td>{{ singleSelectModel.valid }}</td>
+    </tr>
+    <tr>
+      <th>Value</th>
+      <td>{{ getJsonValue(singleSelectModel.value) }}</td>
+    </tr>
+  </table>
+
+  <button
+    class="sky-btn sky-btn-default"
+    type="button"
+    (click)="model.single = undefined"
+  >
+    Set ngModel to undefined
+  </button>
 
   <h2>Multiple select mode</h2>
   <div
@@ -51,10 +63,38 @@
       name="multiple"
       selectMode="multiple"
       [data]="data"
-      [ngModel]="model.multiple"
+      [(ngModel)]="model.multiple"
+      #multipleSelectModel="ngModel"
     >
     </sky-select-field>
   </div>
+
+  <table>
+    <tr>
+      <th>Touched</th>
+      <td>{{ multipleSelectModel.touched }}</td>
+    </tr>
+    <tr>
+      <th>Pristine</th>
+      <td>{{ multipleSelectModel.pristine }}</td>
+    </tr>
+    <tr>
+      <th>Valid</th>
+      <td>{{ multipleSelectModel.valid }}</td>
+    </tr>
+    <tr>
+      <th>Value</th>
+      <td>{{ getJsonValue(multipleSelectModel.value) }}</td>
+    </tr>
+  </table>
+
+  <button
+    class="sky-btn sky-btn-default"
+    type="button"
+    (click)="model.multiple = undefined"
+  >
+    Set ngModel to undefined
+  </button>
 
   <h2>Add new record</h2>
   <div
