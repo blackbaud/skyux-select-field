@@ -1,7 +1,28 @@
+
 <div
   class="app-screenshot"
 >
   <h1>Select Field</h1>
+
+  <h2>Helpers</h2>
+  <div
+    class="sky-padding-even-default"
+  >
+    <button
+      id="select-field-populate-selected-btn"
+      type="button"
+      (click)="populateSelected()"
+    >
+      Populate selected
+    </button>
+    <button
+      id="select-field-populate-selected-long-btn"
+      type="button"
+      (click)="populateSelectedLong()"
+    >
+      Populate selected with a long lable
+    </button>
+  </div>
 
   <h2>Single select mode</h2>
   <div
@@ -111,26 +132,6 @@
       required
     >
     </sky-select-field>
-  </div>
-
-  <h2>Helpers</h2>
-  <div
-    class="sky-padding-even-default"
-  >
-    <button
-      id="select-field-populate-selected-btn"
-      type="button"
-      (click)="populateSelected()"
-    >
-      Populate selected
-    </button>
-    <button
-      id="select-field-populate-selected-long-btn"
-      type="button"
-      (click)="populateSelectedLong()"
-    >
-      Populate selected with a long lable
-    </button>
   </div>
 
   <h3>Select field (reactive)</h3>
