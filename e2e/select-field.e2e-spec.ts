@@ -15,12 +15,14 @@ describe('Select field', () => {
   });
 
   it('should match previous multiple mode screenshot', (done) => {
+    SkyHostBrowser.scrollTo('#screenshot-select-field-multiple-mode');
     expect('#screenshot-select-field-multiple-mode').toMatchBaselineScreenshot(done, {
       screenshotName: 'select-field-multiple-mode'
     });
   });
 
   it('should match previous single mode screenshot', (done) => {
+    SkyHostBrowser.scrollTo('#screenshot-select-field-single-mode');
     expect('#screenshot-select-field-single-mode').toMatchBaselineScreenshot(done, {
       screenshotName: 'select-field-single-mode'
     });
@@ -31,6 +33,7 @@ describe('Select field', () => {
     element(by.css('.sky-modal-btn-close')).click();
     element(by.css('body')).click();
     SkyHostBrowser.moveCursorOffScreen();
+    SkyHostBrowser.scrollTo('#screenshot-select-field-single-mode-wrapper');
     expect('#screenshot-select-field-single-mode-wrapper').toMatchBaselineScreenshot(done, {
       screenshotName: 'select-field-single-mode-validation'
     });
@@ -39,6 +42,7 @@ describe('Select field', () => {
   it('should match previous multiple mode selected screenshot', (done) => {
     element(by.css('#select-field-populate-selected-btn')).click();
     SkyHostBrowser.moveCursorOffScreen();
+    SkyHostBrowser.scrollTo('#screenshot-select-field-multiple-mode');
     expect('#screenshot-select-field-multiple-mode').toMatchBaselineScreenshot(done, {
       screenshotName: 'select-field-multiple-mode-selected'
     });
@@ -47,6 +51,7 @@ describe('Select field', () => {
   it('should match previous single mode selected screenshot', (done) => {
     element(by.css('#select-field-populate-selected-btn')).click();
     SkyHostBrowser.moveCursorOffScreen();
+    SkyHostBrowser.scrollTo('#screenshot-select-field-single-mode');
     expect('#screenshot-select-field-single-mode').toMatchBaselineScreenshot(done, {
       screenshotName: 'select-field-single-mode-selected'
     });
@@ -56,6 +61,7 @@ describe('Select field', () => {
     SkyHostBrowser.setWindowBreakpoint('md');
     element(by.css('#select-field-populate-selected-long-btn')).click();
     SkyHostBrowser.moveCursorOffScreen();
+    SkyHostBrowser.scrollTo('#screenshot-select-field-multiple-mode');
     expect('#screenshot-select-field-multiple-mode').toMatchBaselineScreenshot(done, {
       screenshotName: 'select-field-multiple-mode-long-label'
     });
@@ -65,6 +71,7 @@ describe('Select field', () => {
     SkyHostBrowser.setWindowBreakpoint('md');
     element(by.css('#select-field-populate-selected-long-btn')).click();
     SkyHostBrowser.moveCursorOffScreen();
+    SkyHostBrowser.scrollTo('#screenshot-select-field-single-mode');
     expect('#screenshot-select-field-single-mode').toMatchBaselineScreenshot(done, {
       screenshotName: 'select-field-single-mode-long-label'
     });
