@@ -1,6 +1,6 @@
 # 3.4.3 (2020-02-18)
 
-- Fixed the select field component to allow deselcting the selected item programmatically. [#54](https://github.com/blackbaud/skyux-select-field/pull/54)
+- Fixed the select field component to allow it to programmatically deselect items. [#54](https://github.com/blackbaud/skyux-select-field/pull/54)
 
 # 3.4.2 (2019-10-10)
 
