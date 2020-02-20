@@ -1,0 +1,42 @@
+<div class="sky-select-field-picker">
+  <sky-modal>
+    <sky-modal-header>
+      HEADING TEXT
+    </sky-modal-header>
+    <sky-modal-content>
+      <div class="sky-select-field-picker-content">
+        <sky-list
+          [data]="data"
+          [selectedIds]="selectedIds"
+          (selectedIdsChange)="onSelectedIdsChange($event)"
+        >
+          <sky-list-view-checklist
+            label="label"
+            description="description"
+            [selectMode]="selectMode">
+          </sky-list-view-checklist>
+          <sky-list-paging
+            [pageSize]="6"
+          >
+          </sky-list-paging>
+        </sky-list>
+      </div>
+    </sky-modal-content>
+    <sky-modal-footer>
+      <button
+        class="sky-btn sky-btn-primary sky-select-field-picker-btn-save"
+        type="button"
+        (click)="save()"
+      >
+        {{ 'skyux_select_field_picker_save_button' | skyLibResources }}
+      </button>
+      <button
+        class="sky-btn sky-btn-link sky-select-field-picker-btn-close"
+        type="button"
+        (click)="close()"
+      >
+        {{ 'skyux_select_field_picker_close_button' | skyLibResources }}
+      </button>
+    </sky-modal-footer>
+  </sky-modal>
+</div>
