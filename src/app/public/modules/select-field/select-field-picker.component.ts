@@ -63,12 +63,6 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
   public addNewRecordButtonClick = new Subject<void>();
   public showAddNewRecordButton: boolean = false;
 
-  /**
-   * @interal This function will circumvent the list-builder search function,
-   * allowing consumers to provide search restults from a remote source.
-   */
-  public searchFunction: (data: any, searchText: string) => boolean;
-
   public get defaultCategory(): string {
     return 'any';
   }
@@ -91,11 +85,6 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
 
     this.selectedIds = this.getSelectedIds();
     this.assignCategories();
-
-    // If consumers opt-out of in-memory searching, then disable the list-builder's search function.
-    if (!this.context.inMemorySearchEnabled) {
-      this.searchFunction = () => { return true; };
-    }
   }
 
   public ngAfterContentInit() {

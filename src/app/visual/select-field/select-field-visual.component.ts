@@ -38,13 +38,6 @@ export class SelectFieldVisualComponent implements OnInit {
       description: 'Sally eats strawberries in the cold' }
   ];
 
-  public staticData2 = [
-    { id: '1', category: 'Guitar', label: 'George', description: 'asdf' },
-    { id: '2', category: 'Drum', label: 'Ringo', description: 'asdf' },
-    { id: '3', category: 'Singer', label: 'John', description: 'asdf' },
-    { id: '4', category: 'Singer', label: 'Paul', description: 'asdf' }
-  ];
-
   public data = new BehaviorSubject<any[]>(this.staticData);
 
   public model: any = {};
@@ -91,7 +84,18 @@ export class SelectFieldVisualComponent implements OnInit {
     return JSON.stringify(value);
   }
 
+  /**
+   * Simulate a remote call to update the search results.
+   */
   public onSearchApplied(searchText: string): void {
-    this.data.next(this.staticData2);
+    console.log('Searching remote source for string: ' + searchText);
+    setTimeout(() => {
+      this.data.next([
+        { id: '1', category: 'Guitar', label: 'George' },
+        { id: '2', category: 'Drum', label: 'Ringo' },
+        { id: '3', category: 'Singer', label: 'John' },
+        { id: '4', category: 'Singer', label: 'Paul' }
+      ]);
+    }, 2000);
   }
 }
