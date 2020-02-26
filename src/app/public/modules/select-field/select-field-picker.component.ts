@@ -49,6 +49,9 @@ import { SkySelectFieldPickerContext } from './select-field-picker-context';
 })
 export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, OnDestroy {
 
+  /**
+   * @internal Fires when a search is sumbitted from the picker's toolbar.
+   */
   @Output()
   public searchApplied: EventEmitter<string> = new EventEmitter<string>();
 

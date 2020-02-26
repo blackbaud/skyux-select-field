@@ -103,6 +103,10 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
   @Input()
   public multipleSelectOpenButtonText: string;
 
+  /**
+   * When `inMemorySearchEnabled` is `false`, it will circumvent the list-builder search function,
+   * allowing consumers to provide results from a remote source, by updating the `data` value.
+   */
   @Input()
   public inMemorySearchEnabled: boolean;
 
@@ -127,6 +131,9 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
   @Output()
   public addNewRecordButtonClick = new EventEmitter<void>();
 
+  /**
+   * Fires when a search is sumbitted from the picker's toolbar.
+   */
   @Output()
   public searchApplied: EventEmitter<string> = new EventEmitter<string>();
 

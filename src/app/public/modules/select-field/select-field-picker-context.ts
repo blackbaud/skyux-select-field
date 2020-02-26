@@ -10,7 +10,7 @@ export class SkySelectFieldPickerContext {
   public headingText?: string;
 
   /**
-   * When `inMemorySearchEnabled` is `true`, it will circumvent the list-builder search function,
+   * When `inMemorySearchEnabled` is `false`, it will circumvent the list-builder search function,
    * allowing consumers to provide results from a remote source, by updating the `data` value.
    */
   public inMemorySearchEnabled: boolean = true;
