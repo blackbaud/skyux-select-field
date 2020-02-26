@@ -4,7 +4,6 @@ import {
 } from '@angular/core';
 
 import {
-
   AbstractControl,
   FormBuilder,
   FormControl,
@@ -37,6 +36,13 @@ export class SelectFieldVisualComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       label: 'Strawberries that were picked in the dead of winter when the ground was covered with five inches of snow from a giant blizzard that blew through the area late at night.',
       description: 'Sally eats strawberries in the cold' }
+  ];
+
+  public staticData2 = [
+    { id: '1', category: 'Guitar', label: 'George', description: 'asdf' },
+    { id: '2', category: 'Drum', label: 'Ringo', description: 'asdf' },
+    { id: '3', category: 'Singer', label: 'John', description: 'asdf' },
+    { id: '4', category: 'Singer', label: 'Paul', description: 'asdf' }
   ];
 
   public data = new BehaviorSubject<any[]>(this.staticData);
@@ -83,5 +89,9 @@ export class SelectFieldVisualComponent implements OnInit {
 
   public getJsonValue(value: any): string {
     return JSON.stringify(value);
+  }
+
+  public onSearchApplied(searchText: string): void {
+    this.data.next(this.staticData2);
   }
 }

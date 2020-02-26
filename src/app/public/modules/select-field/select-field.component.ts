@@ -104,6 +104,9 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
   public multipleSelectOpenButtonText: string;
 
   @Input()
+  public inMemorySearchEnabled: boolean;
+
+  @Input()
   public singleSelectClearButtonTitle: string;
 
   @Input()
@@ -123,6 +126,9 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
 
   @Output()
   public addNewRecordButtonClick = new EventEmitter<void>();
+
+  @Output()
+  public searchApplied: EventEmitter<string> = new EventEmitter<string>();
 
   public get value(): any {
     return this._value;
@@ -196,6 +202,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
         pickerContext.selectedValue = this.value;
         pickerContext.selectMode = this.selectMode;
         pickerContext.showAddNewRecordButton = this.showAddNewRecordButton;
+        pickerContext.inMemorySearchEnabled = this.inMemorySearchEnabled;
 
         if (this.customPicker) {
           this.openCustomPicker(pickerContext);
@@ -293,7 +300,15 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
       }]
     });
 
-    modalInstance.componentInstance.addNewRecordButtonClick.subscribe(() => {
+    const picker = modalInstance.componentInstance as SkySelectFieldPickerComponent;
+
+    picker.searchApplied.subscribe((searchText: string) => {
+      this.searchApplied.emit(searchText);
+    });
+
+    if (this.searchApplied.observers)
+
+    picker.addNewRecordButtonClick.subscribe(() => {
       this.addNewRecordButtonClick.emit();
     });
 

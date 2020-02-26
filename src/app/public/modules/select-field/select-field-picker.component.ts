@@ -3,8 +3,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  EventEmitter,
   OnDestroy,
   OnInit,
+  Output,
   ViewChild
 } from '@angular/core';
 
@@ -46,6 +48,10 @@ import { SkySelectFieldPickerContext } from './select-field-picker-context';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, OnDestroy {
+
+  @Output()
+  public searchApplied: EventEmitter<string> = new EventEmitter<string>();
+
   public categories: string[];
   public data: Observable<any>;
   public selectMode: SkySelectFieldSelectMode;
@@ -56,6 +62,12 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
 
   public addNewRecordButtonClick = new Subject<void>();
   public showAddNewRecordButton: boolean = false;
+
+  /**
+   * @interal This function will circumvent the list-builder search function,
+   * allowing consumers to provide search restults from a remote source.
+   */
+  public searchFunction: (data: any, searchText: string) => boolean;
 
   public get defaultCategory(): string {
     return 'any';
@@ -79,6 +91,11 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
 
     this.selectedIds = this.getSelectedIds();
     this.assignCategories();
+
+    // If consumers opt-out of in-memory searching, then disable the list-builder's search function.
+    if (!this.context.inMemorySearchEnabled) {
+      this.searchFunction = () => { return true; };
+    }
   }
 
   public ngAfterContentInit() {
@@ -123,6 +140,10 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
       this.selectedIds = items.filter(item => selectedMap.get(item.id))
         .map(item => item.id);
     });
+  }
+
+  public onSearchApplied(searchText: string): void {
+    this.searchApplied.emit(searchText);
   }
 
   private assignCategories() {

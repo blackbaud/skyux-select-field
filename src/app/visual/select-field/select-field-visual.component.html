@@ -36,6 +36,8 @@
         name="single"
         selectMode="single"
         [data]="data"
+        [inMemorySearchEnabled]="false"
+        (searchApplied)="onSearchApplied($event)"
         [(ngModel)]="model.single"
         required
         #singleSelectModel="ngModel"

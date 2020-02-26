@@ -11,4 +11,5 @@ export class SkySelectFieldPickerContext {
   public selectedValue?: any;
   public selectMode?: SkySelectFieldSelectMode;
   public showAddNewRecordButton: boolean = false;
+  public inMemorySearchEnabled: boolean = true;
 }

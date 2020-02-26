@@ -9,7 +9,10 @@
           [data]="data"
           [selectedIds]="selectedIds"
           (selectedIdsChange)="onSelectedIdsChange($event)">
-          <sky-list-toolbar>
+          <sky-list-toolbar
+            [inMemorySearchEnabled]="context.inMemorySearchEnabled"
+            (searchApplied)="onSearchApplied($event)"
+          >
             <sky-list-toolbar-search-actions *ngIf="showAddNewRecordButton">
               <button
                 class="sky-btn sky-btn-default sky-select-field-picker-btn-new"
@@ -51,9 +54,11 @@
             </sky-list-filter-inline>
           </sky-list-toolbar>
           <sky-list-view-checklist
-            label="label"
             description="description"
-            [selectMode]="selectMode">
+            label="label"
+            [search]="searchFunction"
+            [selectMode]="selectMode"
+          >
           </sky-list-view-checklist>
           <sky-list-paging
             pageSize="6">
