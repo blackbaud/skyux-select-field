@@ -313,8 +313,6 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
       this.searchApplied.emit(searchText);
     });
 
-    if (this.searchApplied.observers)
-
     picker.addNewRecordButtonClick.subscribe(() => {
       this.addNewRecordButtonClick.emit();
     });
