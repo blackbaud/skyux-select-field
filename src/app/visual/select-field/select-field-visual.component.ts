@@ -20,9 +20,17 @@ import {
 })
 export class SelectFieldVisualComponent implements OnInit {
 
+  public data = new BehaviorSubject<any[]>([]);
+
+  public model: any = {};
+
+  public reactiveForm: FormGroup;
+
   public get reactiveFruit(): AbstractControl {
     return this.reactiveForm.get('fruits');
   }
+
+  public remoteData = new BehaviorSubject<any[]>([]);
 
   public staticData = [
     { id: '1', category: 'Pome', label: 'Apple', description: 'Anne eats apples' },
@@ -38,15 +46,11 @@ export class SelectFieldVisualComponent implements OnInit {
       description: 'Sally eats strawberries in the cold' }
   ];
 
-  public data = new BehaviorSubject<any[]>(this.staticData);
-
-  public model: any = {};
-
-  public reactiveForm: FormGroup;
-
   constructor(
     private formBuilder: FormBuilder
-  ) { }
+  ) {
+    this.data.next(this.staticData);
+  }
 
   public ngOnInit(): void {
     this.reactiveForm = this.formBuilder.group({
@@ -90,11 +94,11 @@ export class SelectFieldVisualComponent implements OnInit {
   public onSearchApplied(searchText: string): void {
     console.log('Searching remote source for string: ' + searchText);
     setTimeout(() => {
-      this.data.next([
-        { id: '1', category: 'Guitar', label: 'George' },
-        { id: '2', category: 'Drum', label: 'Ringo' },
-        { id: '3', category: 'Singer', label: 'John' },
-        { id: '4', category: 'Singer', label: 'Paul' }
+      this.remoteData.next([
+        { id: '1', label: 'George' },
+        { id: '2', label: 'Ringo' },
+        { id: '3', label: 'John' },
+        { id: '4', label: 'Paul' }
       ]);
     }, 2000);
   }

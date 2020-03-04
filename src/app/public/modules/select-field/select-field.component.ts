@@ -106,6 +106,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
   /**
    * When `inMemorySearchEnabled` is `false`, it will circumvent the list-builder search function,
    * allowing consumers to provide results from a remote source, by updating the `data` value.
+   * @default true
    */
   @Input()
   public inMemorySearchEnabled: boolean;
