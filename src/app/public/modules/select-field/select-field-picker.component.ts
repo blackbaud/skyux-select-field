@@ -10,9 +10,23 @@ import {
   ViewChild
 } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import {
+  Observable
+} from 'rxjs/Observable';
+
+import {
+  Subject
+} from 'rxjs/Subject';
+
 import 'rxjs/add/operator/take';
+
+import {
+  SkyWindowRefService
+} from '@skyux/core';
+
+import {
+  SkyListToolbarComponent
+} from '@skyux/list-builder';
 
 import {
   ListItemModel
@@ -31,15 +45,13 @@ import {
 } from '@skyux/modals';
 
 import {
-  SkyWindowRefService
-} from '@skyux/core';
+  SkySelectFieldPickerContext
+} from './select-field-picker-context';
 
 import {
   SkySelectField,
   SkySelectFieldSelectMode
 } from './types';
-
-import { SkySelectFieldPickerContext } from './select-field-picker-context';
 
 @Component({
   selector: 'sky-select-field-picker',
@@ -73,6 +85,11 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
   @ViewChild(SkyListViewChecklistComponent)
   private listViewChecklist: SkyListViewChecklistComponent;
 
+  @ViewChild(SkyListToolbarComponent)
+  private listToolbar: SkyListToolbarComponent;
+
+  private ngUnsubscribe = new Subject();
+
   constructor(
     private context: SkySelectFieldPickerContext,
     private instance: SkyModalInstance,
@@ -88,6 +105,12 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
 
     this.selectedIds = this.getSelectedIds();
     this.assignCategories();
+
+    this.listToolbar.searchApplied
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((searchText: string) => {
+        this.searchApplied.emit(searchText);
+      });
   }
 
   public ngAfterContentInit() {
@@ -98,6 +121,8 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
 
   public ngOnDestroy(): void {
     this.addNewRecordButtonClick.complete();
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   public onAddNewRecordButtonClick(): void {
@@ -132,10 +157,6 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
       this.selectedIds = items.filter(item => selectedMap.get(item.id))
         .map(item => item.id);
     });
-  }
-
-  public onSearchApplied(searchText: string): void {
-    this.searchApplied.emit(searchText);
   }
 
   private assignCategories() {

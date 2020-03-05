@@ -78,6 +78,11 @@ describe('Select field component', () => {
     fixture.detectChanges();
   }
 
+  function applySearch(searchText: string): void {
+    const searchInput = document.querySelector('.sky-search-input');
+    searchInput.value = searchText; // FIX
+  }
+
   function clickNewButton(): void {
     const modalCloseButton = document.querySelector('.sky-select-field-picker-btn-new');
     (modalCloseButton as HTMLElement).click();
@@ -543,6 +548,22 @@ describe('Select field component', () => {
 
       detectNewValue();
       expect(selectHTML.classList.contains('ng-touched')).toBeTruthy();
+    }));
+
+    it('should emit searchApplied values when a search is applied', fakeAsync(() => {
+      fixture.detectChanges();
+      openPicker();
+
+      // expect(selectField.value).toBeUndefined();
+    }));
+
+    it('should emit searchApplied values when a search is applied', fakeAsync(() => {
+      const spy = spyOn(component, 'onSearchApplied').and.callThrough();
+      fixture.detectChanges();
+      openPicker();
+      // SEARCH
+
+      expect(spy).toHaveBeenCalledWith('my search');
     }));
   });
 
