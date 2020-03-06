@@ -79,8 +79,16 @@ describe('Select field component', () => {
   }
 
   function applySearch(searchText: string): void {
-    const searchInput = document.querySelector('.sky-search-input');
-    searchInput.value = searchText; // FIX
+    const searchInput = document.querySelector('.sky-search-input') as HTMLInputElement;
+    const searchButton = document.querySelector('.sky-select-field-picker .sky-search-btn-apply') as HTMLButtonElement;
+    searchInput.value = searchText;
+    fixture.detectChanges();
+    SkyAppTestUtility.fireDomEvent(searchInput, 'change');
+    fixture.detectChanges();
+    searchButton.click();
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
   }
 
   function clickNewButton(): void {
@@ -137,6 +145,7 @@ describe('Select field component', () => {
 
   afterEach(inject([SkyModalService], (_modalService: SkyModalService) => {
     _modalService.dispose();
+    fixture.detectChanges();
     fixture.destroy();
   }));
 
@@ -550,20 +559,14 @@ describe('Select field component', () => {
       expect(selectHTML.classList.contains('ng-touched')).toBeTruthy();
     }));
 
-    it('should emit searchApplied values when a search is applied', fakeAsync(() => {
+    it('should emit searchApplied when a search is applied', fakeAsync(() => {
       fixture.detectChanges();
       openPicker();
-
-      // expect(selectField.value).toBeUndefined();
-    }));
-
-    it('should emit searchApplied values when a search is applied', fakeAsync(() => {
       const spy = spyOn(component, 'onSearchApplied').and.callThrough();
-      fixture.detectChanges();
-      openPicker();
-      // SEARCH
 
-      expect(spy).toHaveBeenCalledWith('my search');
+      applySearch('foobar');
+
+      expect(spy).toHaveBeenCalled();
     }));
   });
 

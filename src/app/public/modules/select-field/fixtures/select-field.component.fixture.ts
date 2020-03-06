@@ -87,4 +87,6 @@ export class SkySelectFieldTestComponent implements OnInit, OnDestroy {
   public onBlur(): void {
     this.touched += 1;
   }
+
+  public onSearchApplied(searchText: string): void {}
 }
