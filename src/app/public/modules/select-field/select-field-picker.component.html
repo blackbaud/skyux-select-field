@@ -10,7 +10,7 @@
           [selectedIds]="selectedIds"
           (selectedIdsChange)="onSelectedIdsChange($event)">
           <sky-list-toolbar
-            [inMemorySearchEnabled]="context?.inMemorySearchEnabled"
+            [inMemorySearchEnabled]="inMemorySearchEnabled"
           >
             <sky-list-toolbar-search-actions *ngIf="showAddNewRecordButton">
               <button

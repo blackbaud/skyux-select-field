@@ -71,6 +71,7 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
   public data: Observable<any>;
   public selectMode: SkySelectFieldSelectMode;
   public headingText: string;
+  public inMemorySearchEnabled: boolean;
 
   public selectedCategory = this.defaultCategory;
   public selectedIds: any[] = [];
@@ -102,6 +103,7 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
     this.headingText = this.context.headingText;
     this.selectMode = this.context.selectMode;
     this.showAddNewRecordButton = this.context.showAddNewRecordButton;
+    this.inMemorySearchEnabled = this.context.inMemorySearchEnabled;
 
     this.selectedIds = this.getSelectedIds();
     this.assignCategories();
