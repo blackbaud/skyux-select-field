@@ -56,8 +56,8 @@ class MockModalHostService {
 }
 
 class MockModalConfiguration {
-  constructor() {}
   public fullPage: boolean;
+  constructor() {}
 }
 //#endregion
 
