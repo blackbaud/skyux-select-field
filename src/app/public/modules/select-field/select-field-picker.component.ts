@@ -71,7 +71,20 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
   public data: Observable<any>;
   public selectMode: SkySelectFieldSelectMode;
   public headingText: string;
-  public inMemorySearchEnabled: boolean;
+
+  public set inMemorySearchEnabled(value: boolean) {
+    if (value !== this._inMemorySearchEnabled) {
+      this._inMemorySearchEnabled = value;
+    }
+  }
+
+  public get inMemorySearchEnabled(): boolean {
+    if (this._inMemorySearchEnabled === undefined) {
+      return true;
+    }
+
+    return this._inMemorySearchEnabled;
+  }
 
   public selectedCategory = this.defaultCategory;
   public selectedIds: any[] = [];
@@ -90,6 +103,8 @@ export class SkySelectFieldPickerComponent implements OnInit, AfterContentInit, 
   private listToolbar: SkyListToolbarComponent;
 
   private ngUnsubscribe = new Subject();
+
+  private _inMemorySearchEnabled: boolean;
 
   constructor(
     private context: SkySelectFieldPickerContext,
