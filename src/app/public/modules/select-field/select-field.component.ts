@@ -133,7 +133,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
   public addNewRecordButtonClick = new EventEmitter<void>();
 
   /**
-   * Fires when a search is sumbitted from the picker's toolbar.
+   * Fires when a search is submitted from the picker's toolbar.
    */
   @Output()
   public searchApplied: EventEmitter<string> = new EventEmitter<string>();
