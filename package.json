@@ -2,8 +2,6 @@
   "name": "@skyux/select-field",
   "version": "4.0.0-rc.1",
   "description": "SKY UX Select Field",
-  "main": "bundles/bundle.umd.js",
-  "module": "index.ts",
   "scripts": {
     "build": "skyux build-public-library",
     "start": "skyux serve --hmr",
@@ -22,17 +20,17 @@
   },
   "homepage": "https://github.com/blackbaud/skyux-select-field#readme",
   "peerDependencies": {
-    "@angular/common": "^9.1.2",
-    "@angular/core": "^9.1.2",
-    "@angular/forms": "^9.1.2",
-    "@angular/router": "^9.1.2",
-    "@skyux/core": "^4.0.0-rc.0",
-    "@skyux/i18n": "^4.0.0-rc.0",
-    "@skyux/indicators": "^4.0.0-rc.0",
-    "@skyux/list-builder": "^4.0.0-rc.0",
-    "@skyux/list-builder-common": "^4.0.0-rc.0",
-    "@skyux/list-builder-view-checklist": "^4.0.0-rc.1",
-    "@skyux/modals": "^4.0.0-rc.0"
+    "@angular/common": "^9.1.4",
+    "@angular/core": "^9.1.4",
+    "@angular/forms": "^9.1.4",
+    "@angular/router": "^9.1.4",
+    "@skyux/core": "^4.0.0-rc.4",
+    "@skyux/i18n": "^4.0.0-rc.5",
+    "@skyux/indicators": "^4.0.0-rc.5",
+    "@skyux/list-builder": "^4.0.0-rc.2",
+    "@skyux/list-builder-common": "^4.0.0-rc.1",
+    "@skyux/list-builder-view-checklist": "^4.0.0-rc.2",
+    "@skyux/modals": "^4.0.0-rc.4"
   },
   "dependencies": {},
   "devDependencies": {
