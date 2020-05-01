@@ -24,7 +24,7 @@ import {
 
 import {
   SkyListFilterInlineModel
-} from '@skyux/list-builder/modules/list-filters/list-filter-inline.model';
+} from '@skyux/list-builder';
 
 import {
   SkyListViewChecklistComponent

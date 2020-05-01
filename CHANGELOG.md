@@ -1,3 +1,7 @@
+# 4.0.0-rc.1 (2020-04-30)
+
+- Updated development dependencies.
+
 # 4.0.0-rc.0 (2020-04-20)
 
 ### New features
