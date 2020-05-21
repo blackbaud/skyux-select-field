@@ -10,7 +10,7 @@
 
 ### Breaking changes
 
-- Dropped support for `rxjs@5`. Consumers may install `rxjs-compat@^6` to support older versions of `rxjs`. [#61](https://github.com/blackbaud/skyux-select-field/pull/61)
+- Dropped support for `rxjs@5`. Consumers can install `rxjs-compat@^6` to support older versions of `rxjs`. [#61](https://github.com/blackbaud/skyux-select-field/pull/61)
 
 # 3.5.1 (2020-03-26)
 
