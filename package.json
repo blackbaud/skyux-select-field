@@ -1,6 +1,6 @@
 {
   "name": "@skyux/select-field",
-  "version": "4.0.0-rc.1",
+  "version": "4.0.0",
   "description": "SKY UX Select Field",
   "scripts": {
     "build": "skyux build-public-library",
