@@ -17,5 +17,6 @@
     (ngModelChange)="onModelChange($event)"
     (searchApplied)="onSearchApplied($event)"
     [(ngModel)]="formData.modelValue"
+    [readOnlyIfOneSelectField]="readOnlyIfOneSelectField"
   >
   </sky-select-field>

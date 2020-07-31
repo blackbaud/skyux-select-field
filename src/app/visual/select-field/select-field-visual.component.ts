@@ -22,6 +22,8 @@ export class SelectFieldVisualComponent implements OnInit {
 
   public data = new BehaviorSubject<any[]>([]);
 
+  public singleItemData = new BehaviorSubject<any[]>([]);
+
   public model: any = {};
 
   public reactiveForm: FormGroup;
@@ -50,6 +52,7 @@ export class SelectFieldVisualComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.data.next(this.staticData);
+    this.singleItemData.next(this.staticData.slice(0, 1));
   }
 
   public ngOnInit(): void {

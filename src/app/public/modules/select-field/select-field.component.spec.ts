@@ -1,4 +1,5 @@
 import {
+  async,
   ComponentFixture,
   fakeAsync,
   inject,
@@ -164,6 +165,7 @@ describe('Select field component', () => {
       expect(selectField.descriptorKey).toEqual('label');
       expect(selectField.disabled).toEqual(false);
       expect(selectField.selectMode).toEqual('multiple');
+      expect(selectField.readOnlyIfOneSelectField).toEqual(false);
     });
 
     it('should provide inputs', () => {
@@ -177,6 +179,7 @@ describe('Select field component', () => {
       component.singleSelectOpenButtonTitle = 'open title';
       component.singleSelectPlaceholderText = 'placeholder';
       component.pickerHeading = 'heading';
+      component.readOnlyIfOneSelectField = true;
 
       fixture.detectChanges();
 
@@ -190,6 +193,7 @@ describe('Select field component', () => {
       expect(selectField.singleSelectOpenButtonTitle).toEqual('open title');
       expect(selectField.singleSelectPlaceholderText).toEqual('placeholder');
       expect(selectField.pickerHeading).toEqual('heading');
+      expect(selectField.readOnlyIfOneSelectField).toEqual(true);
     });
 
     it('should set custom picker heading', fakeAsync(() => {
@@ -425,6 +429,36 @@ describe('Select field component', () => {
     }));
   });
 
+  describe('read-only if one select field', () => {
+    beforeEach(() => {
+      component.readOnlyIfOneSelectField = true;
+      fixture.detectChanges();
+    });
+
+    it('should show the label of the one select field if readOnlyIfOneSelectField and there is only one select field', async(() => {
+      component.data.next([ component.staticData[0] ]);
+      fixture.detectChanges();
+
+      setTimeout(() => {
+        fixture.detectChanges();
+        const selectFieldElement: Element = document.querySelector('.sky-select-field-read-only-mode');
+        expect(selectFieldElement).toExist();
+        expect(selectFieldElement).toHaveText(component.staticData[0].label);
+      });
+    }));
+
+    it('should use the appropriate mode html if readOnlyIfOneSelectField but there is more than one select field', async(() => {
+      component.data.next(component.staticData);
+      fixture.detectChanges();
+
+      setTimeout(() => {
+        fixture.detectChanges();
+        expect(document.querySelector('.sky-select-field-read-only-mode')).not.toExist();
+        expect(document.querySelector(`.sky-select-field-${selectField.selectMode}-select-mode`)).toExist();
+      });
+    }));
+  });
+
   describe('picker', () => {
     it('should open and close the picker', fakeAsync(() => {
       fixture.detectChanges();
@@ -539,7 +573,7 @@ describe('Select field component', () => {
       fixture.componentInstance.selectMode = 'single';
       let updateValueFn: (value: SkySelectField[]) => void;
 
-      const customPicker: SkySelectFieldCustomPicker = {
+      fixture.componentInstance.customPicker = {
         open: jasmine.createSpy('open').and.callFake(
           (
             _pickerContext: SkySelectFieldPickerContext,
@@ -549,8 +583,6 @@ describe('Select field component', () => {
           }
         )
       };
-
-      fixture.componentInstance.customPicker = customPicker;
 
       fixture.detectChanges();
       const selectHTML = fixture.nativeElement.querySelector('sky-select-field');

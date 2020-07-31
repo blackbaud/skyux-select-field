@@ -117,6 +117,41 @@
     Set ngModel to undefined
   </button>
 
+  <h2>Read-only one select item mode</h2>
+  <div
+    class="sky-padding-even-default"
+    id="screenshot-select-field-read-only-one-select-item-mode"
+  >
+    <sky-select-field
+      name="read-only-one-select-item"
+      selectMode="single"
+      readOnlyIfOneSelectField="true"
+      [data]="singleItemData"
+      [(ngModel)]="model.readOnlyOneItem"
+      #readOnlyOneItemModel="ngModel"
+    >
+    </sky-select-field>
+  </div>
+
+  <table>
+    <tr>
+      <th>Touched</th>
+      <td>{{ readOnlyOneItemModel.touched }}</td>
+    </tr>
+    <tr>
+      <th>Pristine</th>
+      <td>{{ readOnlyOneItemModel.pristine }}</td>
+    </tr>
+    <tr>
+      <th>Valid</th>
+      <td>{{ readOnlyOneItemModel.valid }}</td>
+    </tr>
+    <tr>
+      <th>Value</th>
+      <td>{{ getJsonValue(readOnlyOneItemModel.value) }}</td>
+    </tr>
+  </table>
+
   <h2>Add new record</h2>
   <div
     class="sky-padding-even-default"

@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -16,17 +17,17 @@ import {
 } from '@angular/forms';
 
 import {
-  SkyModalService,
-  SkyModalCloseArgs
-} from '@skyux/modals';
-
-import {
   SkyLibResourcesService
 } from '@skyux/i18n';
 
 import {
   SkyToken
 } from '@skyux/indicators';
+
+import {
+  SkyModalService,
+  SkyModalCloseArgs
+} from '@skyux/modals';
 
 import {
   Observable,
@@ -71,7 +72,7 @@ import {
     }
   ]
 })
-export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy {
+export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy, AfterViewInit {
   @Input()
   public ariaLabel: string;
 
@@ -137,6 +138,9 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
   @Input()
   public showAddNewRecordButton: boolean = false;
 
+  @Input()
+  public readOnlyIfOneSelectField: boolean = false;
+
   @Output()
   public blur = new EventEmitter();
 
@@ -148,6 +152,8 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
    */
   @Output()
   public searchApplied: EventEmitter<string> = new EventEmitter<string>();
+
+  public hasOnlyOneSelectField: boolean = false;
 
   public get value(): any {
     return this._value;
@@ -185,6 +191,19 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
     private elementRef: ElementRef
   ) { }
 
+  public ngAfterViewInit() {
+    setTimeout(() => {
+      this.data.pipe(take(1)).subscribe((items: SkySelectField[]) => {
+        if (items.length === 1) {
+          this.hasOnlyOneSelectField = true;
+          this.value = items[0];
+        } else {
+          this.hasOnlyOneSelectField = false;
+        }
+      });
+    });
+  }
+
   public ngOnDestroy() {
     this.blur.complete();
     this.addNewRecordButtonClick.complete();
@@ -198,8 +217,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
     const newIds = change.map(token => token.value.id);
 
     this.data.pipe(take(1)).subscribe((items: SkySelectField[]) => {
-      const newValues = items.filter(item => newIds.indexOf(item.id) > -1);
-      this.value = newValues;
+      this.value = items.filter(item => newIds.indexOf(item.id) > -1);
       this.setTokensFromValue();
       this.changeDetector.markForCheck();
     });
@@ -275,6 +293,13 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
   public clearSelection() {
     this.elementRef.nativeElement.querySelector('.sky-select-field-btn').focus();
     this.value = undefined;
+  }
+
+  public getMode(): string {
+    if (this.hasOnlyOneSelectField && this.readOnlyIfOneSelectField) {
+      return 'readonly';
+    }
+    return this.selectMode;
   }
 
   /* istanbul ignore next */
