@@ -3,6 +3,15 @@ import {
 } from '@angular/core';
 
 import {
+  SkyCodeModule
+} from '@blackbaud/skyux-lib-code-block';
+
+import {
+  SkyDocsToolsModule,
+  SkyDocsToolsOptions
+} from '@skyux/docs-tools';
+
+import {
   SkyAppLinkModule
 } from '@skyux/router';
 
@@ -13,7 +22,18 @@ import {
 @NgModule({
   exports: [
     SkyAppLinkModule,
-    SkySelectFieldModule
+    SkyCodeModule,
+    SkySelectFieldModule,
+    SkyDocsToolsModule
+  ],
+  providers: [
+    {
+      provide: SkyDocsToolsOptions,
+      useValue: {
+        gitRepoUrl: 'https://github.com/blackbaud/skyux-select-field',
+        packageName: '@skyux/select-field'
+      }
+    }
   ]
 })
 export class AppExtrasModule { }
