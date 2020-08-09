@@ -72,18 +72,40 @@ import {
   ]
 })
 export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy {
+  /**
+   * Defines a string value to label the text input or button for accessibility.
+   * If a label is visible on the screen, use the `ariaLabelledBy` property instead.
+   */
   @Input()
   public ariaLabel: string;
 
+  /**
+   * Identifies the element that defines a label for the text input or button.
+   * If a label is not visible on the screen, use the `ariaLabel` property instead.
+   */
   @Input()
   public ariaLabelledBy: string;
 
+  /**
+   * Defines a data source to populate the modal picker with items that users can select.
+   * This property accepts an Observable array of `SkySelectField` values. The `SkySelectField`
+   * type extends the any type and supports `id`, `label`, and `category` values.
+   * @required
+   */
   @Input()
   public data: Observable<SkySelectField[]>;
 
+  /**
+   * Specifies a `SkySelectFieldCustomPicker` object to display a custom UI when users
+   * select the select field button.
+   */
   @Input()
   public customPicker: SkySelectFieldCustomPicker;
 
+  /**
+   * Specifies a property to highlight in the picker with bold text. The valid options are
+   * the values that the `data` property injects into the component: `id`, `label`, and `category`.
+   */
   @Input()
   public set descriptorKey(value: string) {
     this._descriptorKey = value;
@@ -93,6 +115,10 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
     return this._descriptorKey || 'label';
   }
 
+  /**
+   * Indicates whether to disable the text input or button and prevent users
+   * from opening the picker.
+   */
   @Input()
   public set disabled(value: boolean) {
     this._disabled = value;
@@ -102,6 +128,11 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
     return this._disabled || false;
   }
 
+  /**
+   * Specifies the selection mode that determines whether users can select one item
+   * or multiple items. The valid options are `single`, which displays a text input,
+   * and `multiple`, which displays a button.
+   */
   @Input()
   public set selectMode(value: SkySelectFieldSelectMode) {
     this._selectMode = value;
@@ -111,6 +142,9 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
     return this._selectMode || 'multiple';
   }
 
+  /**
+   * Specifies a label for the button when `selectMode` is set to `multiple`.
+   */
   @Input()
   public multipleSelectOpenButtonText: string;
 
@@ -122,24 +156,51 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
   @Input()
   public inMemorySearchEnabled: boolean;
 
+  /**
+   * Specifies tooltip text for the icon that clears the text input when `selectMode`
+   * is set to `single`. The clear icon appears after users select an item.
+   */
   @Input()
   public singleSelectClearButtonTitle: string;
 
+  /**
+   * Specifies tooltip text for the text input when `selectMode` is set to `single`.
+   */
   @Input()
   public singleSelectOpenButtonTitle: string;
 
+  /**
+   * Specifies placeholder text to display in the text input when `selectMode` is set to
+   * `single` and no item is selected.
+   */
   @Input()
   public singleSelectPlaceholderText: string;
 
+  /**
+   * Specifies a header for the picker. When `selectMode` is set to `single`, the default
+   * header is "Select a value." When `selectMode` is set to `multiple`, the default header
+   * is "Select values."
+   */
   @Input()
   public pickerHeading: string;
 
+  /**
+   * Indicates whether to display a button in the picker for users to add items. Consumers
+   * must tie into the `addNewRecordButtonClick` event and provide the logic to add items.
+   */
   @Input()
   public showAddNewRecordButton: boolean = false;
 
+  /**
+   * Fires when the component loses focus. This event does not emit a value.
+   */
   @Output()
   public blur = new EventEmitter();
 
+  /**
+   * Fires when users select the add button in the picker to add an item. The button appears
+   * when when `showAddNewRecordButton` is set to true.
+   */
   @Output()
   public addNewRecordButtonClick = new EventEmitter<void>();
 
