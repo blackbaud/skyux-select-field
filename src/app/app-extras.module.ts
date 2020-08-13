@@ -23,8 +23,8 @@ import {
   exports: [
     SkyAppLinkModule,
     SkyCodeModule,
-    SkySelectFieldModule,
-    SkyDocsToolsModule
+    SkyDocsToolsModule,
+    SkySelectFieldModule
   ],
   providers: [
     {

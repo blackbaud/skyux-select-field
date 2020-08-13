@@ -26,24 +26,21 @@
       }
     }
   },
+  "omnibar": {},
+  "params": {
+    "svcid": {
+      "value": "skyux"
+    }
+  },
   "app": {
     "styles": [
-      "src/app/visual-styles.scss",
       "@skyux/docs-tools/css/docs-tools.css"
     ]
   },
   "host": {
+    "url": "https://developer.blackbaud.com",
     "frameOptions": {
       "none": true
-    },
-    "url": "https://developer.blackbaud.com"
-  },
-  "omnibar": {
-    "experimental": true
-  },
-  "params":{
-    "svcid": {
-      "value": "skyux"
     }
   }
 }
