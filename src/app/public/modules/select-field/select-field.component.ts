@@ -200,7 +200,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
 
   /**
    * Fires when users select the add button in the picker to add an item. The button appears
-   * when when `showAddNewRecordButton` is set to true.
+   * when when `showAddNewRecordButton` is set to `true`.
    */
   @Output()
   public addNewRecordButtonClick = new EventEmitter<void>();
