@@ -88,7 +88,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
 
   /**
    * Defines a data source to populate the modal picker with items that users can select.
-   * This property accepts an Observable array of `SkySelectField` values. The `SkySelectField`
+   * This property accepts an observable array of `SkySelectField` values. The `SkySelectField`
    * type extends the any type and supports `id`, `label`, and `category` values.
    * @required
    */
