@@ -150,8 +150,8 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
 
   /**
    * Indicates whether to use the default search function. To circumvent the list-builder search function
-   * and provide search results from a remote source, set this property to `false` and specify the source 
-   * with the *data* property. 
+   * and provide search results from a remote source, set this property to `false` and specify the source
+   * with the *data* property.
    * @default true
    */
   @Input()
