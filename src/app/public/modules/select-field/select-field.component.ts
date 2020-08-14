@@ -149,8 +149,9 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
   public multipleSelectOpenButtonText: string;
 
   /**
-   * When `inMemorySearchEnabled` is `false`, it will circumvent the list-builder search function,
-   * allowing consumers to provide results from a remote source, by updating the `data` value.
+   * Indicates whether to use the default search function. To circumvent the list-builder search function
+   * and provide search results from a remote source, set this property to `false` and specify the source 
+   * with the *data* property. 
    * @default true
    */
   @Input()
