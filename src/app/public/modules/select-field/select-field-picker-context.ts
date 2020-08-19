@@ -44,6 +44,7 @@ export class SkySelectFieldPickerContext {
    * The boolean value from the select field's `showAddNewRecordButton` property.
    * Use this property to determine whether to display a button in the custom picker
    * for users to add items.
+   * @default false
    */
   public showAddNewRecordButton: boolean = false;
 }

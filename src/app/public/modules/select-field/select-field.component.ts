@@ -105,6 +105,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
   /**
    * Specifies a property to highlight in the picker with bold text. The valid options are
    * the values that the `data` property injects into the component: `id`, `label`, and `category`.
+   * @default label
    */
   @Input()
   public set descriptorKey(value: string) {
@@ -118,6 +119,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
   /**
    * Indicates whether to disable the text input or button and prevent users
    * from opening the picker.
+   * @default false
    */
   @Input()
   public set disabled(value: boolean) {
@@ -132,6 +134,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
    * Specifies the selection mode that determines whether users can select one item
    * or multiple items. The valid options are `single`, which displays a text input,
    * and `multiple`, which displays a button.
+   * @default multiple
    */
   @Input()
   public set selectMode(value: SkySelectFieldSelectMode) {
@@ -144,14 +147,15 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
 
   /**
    * Specifies a label for the button when `selectMode` is set to `multiple`.
+   * @default Select values
    */
   @Input()
   public multipleSelectOpenButtonText: string;
 
   /**
    * Indicates whether to use the default search function. To circumvent the list-builder search function
-   * and provide search results from a remote source, set this property to `false` and specify the source 
-   * with the *data* property. 
+   * and provide search results from a remote source, set this property to `false` and specify the source
+   * with the *data* property.
    * @default true
    */
   @Input()
@@ -160,12 +164,14 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
   /**
    * Specifies tooltip text for the icon that clears the text input when `selectMode`
    * is set to `single`. The clear icon appears after users select an item.
+   * @default Clear selection
    */
   @Input()
   public singleSelectClearButtonTitle: string;
 
   /**
    * Specifies tooltip text for the text input when `selectMode` is set to `single`.
+   * @default Click to select a value
    */
   @Input()
   public singleSelectOpenButtonTitle: string;
@@ -173,6 +179,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
   /**
    * Specifies placeholder text to display in the text input when `selectMode` is set to
    * `single` and no item is selected.
+   * @default Select a value
    */
   @Input()
   public singleSelectPlaceholderText: string;
@@ -188,6 +195,7 @@ export class SkySelectFieldComponent implements ControlValueAccessor, OnDestroy 
   /**
    * Indicates whether to display a button in the picker for users to add items. Consumers
    * must tie into the `addNewRecordButtonClick` event and provide the logic to add items.
+   * @default false
    */
   @Input()
   public showAddNewRecordButton: boolean = false;
