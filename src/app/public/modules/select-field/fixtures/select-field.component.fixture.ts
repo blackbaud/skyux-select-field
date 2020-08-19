@@ -52,6 +52,8 @@ export class SkySelectFieldTestComponent implements OnInit, OnDestroy {
 
   public singleSelectPlaceholderText: string;
 
+  public readOnlyIfOneSelectField: boolean;
+
   public staticData = [
     { id: '1', category: 'Pome', label: 'Apple', description: 'Anne eats apples' },
     { id: '2', category: 'Berry', label: 'Banana', description: 'Ben eats bananas' },
