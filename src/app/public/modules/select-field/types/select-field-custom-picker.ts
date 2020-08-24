@@ -13,7 +13,7 @@ export interface SkySelectFieldCustomPicker {
    * @param pickerContext A `SkySelectFieldPickerContext` object that provides values to the
    * custom picker.
    * @param updateValue A function that accepts an array of `SkySelectField` objects that
-   * represents the values selected in the custom picker.
+   * represent the values selected in the custom picker.
    */
   open: (
     pickerContext: SkySelectFieldPickerContext,

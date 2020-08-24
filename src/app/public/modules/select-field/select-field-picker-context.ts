@@ -10,6 +10,9 @@ import {
   SkySelectFieldSelectMode
 } from './types/select-field-select-mode';
 
+/**
+ * Provides values to a custom picker.
+ */
 export class SkySelectFieldPickerContext {
   /**
    * An array of `SkySelectField` objects from the select field's `data` property.
@@ -23,8 +26,9 @@ export class SkySelectFieldPickerContext {
   public headingText?: string;
 
   /**
-   * When `inMemorySearchEnabled` is `false`, it will circumvent the list-builder search function,
-   * allowing consumers to provide results from a remote source, by updating the `data` value.
+   * The boolean value from the select field's `inMemorySearchEnabled`. When `false`, it
+   * circumvents the list-builder search function to enable consumers to provide results
+   * from a remote source by updating the `data` value.
    */
   public inMemorySearchEnabled: boolean = true;
 
