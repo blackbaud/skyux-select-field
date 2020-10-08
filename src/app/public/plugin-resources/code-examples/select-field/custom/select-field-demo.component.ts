@@ -24,8 +24,14 @@ import {
 import {
   BehaviorSubject
 } from 'rxjs';
-import { SelectFieldDemoCustomPickerContext } from './select-field-demo-custom-picker-context';
-import { SelectFieldDemoCustomPickerComponent } from './select-field-demo-custom-picker.component';
+
+import {
+  SelectFieldDemoCustomPickerComponent
+} from './select-field-demo-custom-picker.component';
+
+import {
+  SelectFieldDemoCustomPickerContext
+} from './select-field-demo-custom-picker-context';
 
 @Component({
   selector: 'app-select-field-demo',
