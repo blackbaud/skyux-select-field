@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
@@ -14,7 +14,7 @@ import { VisualComponent } from './visual.component';
     VisualComponent
   ],
   imports: [
-    BrowserAnimationsModule,
+    NoopAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
