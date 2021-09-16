@@ -1,3 +1,7 @@
+# 5.0.0-beta.2 (2021-09-16)
+
+- Updated peer dependencies. [#104](https://github.com/blackbaud/skyux-select-field/pull/104)
+
 # 5.0.0-beta.1 (2021-09-02)
 
 - Migrated to Angular CLI. [#101](https://github.com/blackbaud/skyux-select-field/pull/101)
