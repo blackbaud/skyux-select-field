@@ -1,0 +1,208 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "select-field": {
+      "projectType": "library",
+      "root": "projects/select-field",
+      "sourceRoot": "projects/select-field/src",
+      "prefix": "sky",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/select-field/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/select-field/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/select-field/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/select-field/src/test.ts",
+            "tsConfig": "projects/select-field/tsconfig.spec.json",
+            "karmaConfig": "projects/select-field/karma.conf.js",
+            "codeCoverage": true,
+            "codeCoverageExclude": [
+              "**/fixtures/**",
+              "projects/select-field/src/test.ts"
+            ],
+            "styles": [
+              "@skyux/theme/css/sky.css",
+              "@skyux/theme/css/themes/modern/styles.css"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/select-field/**/*.ts",
+              "projects/select-field/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "select-field-showcase": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "skipTests": true
+        },
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/select-field-showcase",
+      "sourceRoot": "projects/select-field-showcase/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/select-field-showcase",
+            "index": "projects/select-field-showcase/src/index.html",
+            "main": "projects/select-field-showcase/src/main.ts",
+            "polyfills": "projects/select-field-showcase/src/polyfills.ts",
+            "tsConfig": "projects/select-field-showcase/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/select-field-showcase/src/favicon.ico",
+              "projects/select-field-showcase/src/assets"
+            ],
+            "styles": [
+              "node_modules/@skyux/theme/css/sky.css",
+              "node_modules/@skyux/theme/css/themes/modern/styles.css",
+              "projects/select-field-showcase/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/select-field-showcase/src/environments/environment.ts",
+                  "with": "projects/select-field-showcase/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "select-field-showcase:build:production"
+            },
+            "development": {
+              "browserTarget": "select-field-showcase:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "select-field-showcase:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/select-field-showcase/src/test.ts",
+            "polyfills": "projects/select-field-showcase/src/polyfills.ts",
+            "tsConfig": "projects/select-field-showcase/tsconfig.spec.json",
+            "karmaConfig": "projects/select-field-showcase/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/select-field-showcase/src/favicon.ico",
+              "projects/select-field-showcase/src/assets"
+            ],
+            "styles": [
+              "projects/select-field-showcase/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/select-field-showcase/**/*.ts",
+              "projects/select-field-showcase/**/*.html"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/select-field-showcase/e2e/protractor.conf.js"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "select-field-showcase:serve:production"
+            },
+            "development": {
+              "devServerTarget": "select-field-showcase:serve:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        }
+      }
+    }
+  },
+  "defaultProject": "select-field",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
+}
