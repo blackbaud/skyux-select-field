@@ -8,16 +8,16 @@ import { VisualComponent } from './visual/visual.component';
 const routes: Routes = [
   {
     path: 'visual',
-    component: VisualComponent
+    component: VisualComponent,
   },
   {
     path: 'visual/select-field',
-    component: SelectFieldVisualComponent
-  }
+    component: SelectFieldVisualComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
