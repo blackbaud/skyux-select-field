@@ -9,16 +9,13 @@ import { SelectFieldVisualComponent } from './select-field/select-field-visual.c
 import { VisualComponent } from './visual.component';
 
 @NgModule({
-  declarations: [
-    SelectFieldVisualComponent,
-    VisualComponent
-  ],
+  declarations: [SelectFieldVisualComponent, VisualComponent],
   imports: [
     NoopAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    SkySelectFieldModule
-  ]
+    SkySelectFieldModule,
+  ],
 })
-export class VisualModule { }
+export class VisualModule {}

@@ -12,16 +12,10 @@
     "importHelpers": true,
     "target": "es2017",
     "paths": {
-      "select-field": [
-        "dist/select-field/select-field",
-        "dist/select-field"
-      ]
+      "select-field": ["dist/select-field/select-field", "dist/select-field"]
     },
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "lib": ["es2018", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false
