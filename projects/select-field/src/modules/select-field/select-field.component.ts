@@ -85,7 +85,7 @@ export class SkySelectFieldComponent
   /**
    * Specifies a property to highlight in the picker with bold text. The valid options are
    * the values that the `data` property injects into the component: `id`, `label`, and `category`.
-   * @default label
+   * @default "label"
    */
   @Input()
   public set descriptorKey(value: string) {
@@ -114,7 +114,7 @@ export class SkySelectFieldComponent
    * Specifies the selection mode that determines whether users can select one item
    * or multiple items. The valid options are `single`, which displays a text input,
    * and `multiple`, which displays a button.
-   * @default multiple
+   * @default "multiple"
    */
   @Input()
   public set selectMode(value: SkySelectFieldSelectMode) {
@@ -127,7 +127,7 @@ export class SkySelectFieldComponent
 
   /**
    * Specifies a label for the button when `selectMode` is set to `multiple`.
-   * @default Select values
+   * @default "Select values"
    */
   @Input()
   public multipleSelectOpenButtonText: string;
@@ -144,14 +144,14 @@ export class SkySelectFieldComponent
   /**
    * Specifies tooltip text for the icon that clears the text input when `selectMode`
    * is set to `single`. The clear icon appears after users select an item.
-   * @default Clear selection
+   * @default "Clear selection"
    */
   @Input()
   public singleSelectClearButtonTitle: string;
 
   /**
    * Specifies tooltip text for the text input when `selectMode` is set to `single`.
-   * @default Click to select a value
+   * @default "Click to select a value"
    */
   @Input()
   public singleSelectOpenButtonTitle: string;
@@ -159,7 +159,7 @@ export class SkySelectFieldComponent
   /**
    * Specifies placeholder text to display in the text input when `selectMode` is set to
    * `single` and no item is selected.
-   * @default Select a value
+   * @default "Select a value"
    */
   @Input()
   public singleSelectPlaceholderText: string;
